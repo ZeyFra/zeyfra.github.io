@@ -1,3 +1,33 @@
+body {
+  cursor: url("/images/mouse.cur"), auto;
+}
+a {
+  cursor: url("https://cdn.jsdelivr.net/gh/constown/HexoCustomFile/public/cursors/pointer.cur"), default;
+}
+.footer {
+  border-top: 2px solid #f6f6f6;
+  padding: 3rem 0;
+  font-size: 115%;
+}
+.footer a {
+  color: #403e3e;
+}
+.footer a:link {
+  color: #403e3e;
+  text-decoration: underline;
+}
+.footer a:visited {
+  color: #00f;
+  text-decoration: none;
+}
+.footer a:hover {
+  color: #0681d0;
+  text-decoration: underline;
+}
+.footer a:active {
+  color: #0681d0;
+  text-decoration: underline;
+}
 .sidebar {
   left: -8rem;
   width: 8rem;
