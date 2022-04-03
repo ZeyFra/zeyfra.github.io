@@ -1,8 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>【Java杂记 01】关于序列化和Serializable（序列化）接口</title>
-    <url>/2020/07/04/%E3%80%90Java%E6%9D%82%E8%AE%B0%2001%E3%80%91%E5%85%B3%E4%BA%8E%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8CSerializable%EF%BC%88%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%89%E6%8E%A5%E5%8F%A3/</url>
+    <title>【Java杂记02】JDK8-ArrayList源码分析</title>
+    <url>/2021/03/26/%E3%80%90Java%E6%9D%82%E8%AE%B002%E3%80%91JDK8-ArrayList%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>ArrayList是Java中最常用的集合之一，它继承了抽象类AbstractList，同时还实现了Serializable、Cloneable、RandomAccess接口，是一个支持快速访问、复制、序列化的集合。</p>
+<p><img src="https://s2.loli.net/2022/04/03/8ZRlAnDYXN51tTu.png" alt=""></p>
+<blockquote>
+<p><strong>AbstractList<E></strong></p>
+</blockquote>
+<p>AbstractList<E> 是一个抽象类，实现了List 接口，是Java集合框架AbstractCollection<E>中的一个子接口</p>
+<blockquote>
+<p><strong>List<E></strong></p>
+</blockquote>
+<p>List<E>是一个有序集合接口，实现该接口，可以精确控制列表中每个元素的插入位置，可以通过整数索引访问元素，并搜索列表中的元素，List<E>允许元素重复，而Set<E>接口不允许 <img src="https://s2.loli.net/2022/04/03/ko1xNEjOZIvAWwY.png" alt=""></p>
+<blockquote>
+<p><strong>RandomAccess</strong></p>
+</blockquote>
+<ul>
+<li>RandomAccess接口是一个标记型接口（Marker），只要List集合实现这个接口，就能支持快速随机访问，可以提高查找效率，实现RandomAccess接口的List集合采用一般的for循环遍历，而未实现这接口则采用迭代器interator。</li>
+<li>LinkedList中并未实现RandomAccess接口。</li>
+<li>而ArrayList用for循环遍历比用iterator迭代器遍历快，LinkedList用iterator迭代器遍历比for循环遍历快，所以List集合的不同子类应当采用不同的遍历方式，以便能够提高性能。</li>
+<li>关于RandomAccess接口，更多详情可参考 <a href="https://blog.csdn.net/weixin_39148512/article/details/79234817?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-3.control">这篇文章</a>。</li>
+</ul>
+<blockquote>
+<p><strong>Cloneable</strong></p>
+</blockquote>
+<ul>
+<li>Cloneable是标记型的接口，实现 Cloneable来表示该对象能被克隆，能使用clone()方法。</li>
+<li>如果没有实现Cloneable接口的类对象调用clone()就会抛出CloneNotSupportedException异常。</li>
+</ul>
+<blockquote>
+<p><strong>Serializable</strong></p>
+</blockquote>
+<ul>
+<li>Serializable也是一个标记型接口，一个类只有实现了Serializable接口，它的对象才能被序列化</li>
+<li>序列化是指把对象转换为字节序列的过程，我们称之为对象的序列化，就是把内存中的这些对象变成一连串的字节(bytes)数据，这样对象数据便可以二进制文本的方式被持久化到了磁盘文件中。</li>
+<li>相应的也有反序列化，与序列化含义相反，将持久化的对象字节流数据通过IO转化为Java对象</li>
+</ul>
+ </ul> 
+<blockquote>
+<p><strong>成员变量</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 序列化id，辅助对象的序列化与反序列化的</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">8683452581122892189L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 默认的初始化容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">DEFAULT_CAPACITY</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这两个空对象数组是用来识别ArrayList是从有参构造函数初始化而来的还是从无参构造函数初始化而来</span></span><br><span class="line">	<span class="comment">// 下面分析构造函数源码的时候会讲到</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;</span><br><span class="line">   &#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// elementData是ArrayList的数组缓冲区，ArrayList容量取决于此对象数组的大小</span></span><br><span class="line">	<span class="comment">// 当任一存在elementData数组和DEFAULTCAPACITY_EMPTY_ELEMENTDATA相等的空ArrayList（ArrayList有个空参构造函数，其内容便是 this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;）在第一次添加元素时，其容量会扩充为默认大小的10</span></span><br><span class="line">	<span class="comment">// 未定义修饰符以便同package下访问（未定义修饰符默认是同package可访问）</span></span><br><span class="line">	<span class="comment">// transient关键字是指在该对象序列化时忽略此属性</span></span><br><span class="line">    <span class="keyword">transient</span> Object[] elementData; <span class="comment">// non-private to simplify nested class access</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ArrayList中实际的元素数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 已对该列表进行更改列表大小或以其他方式修改列表大小的的次数</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">transient</span> <span class="type">int</span> <span class="variable">modCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ArrayList内部数组得最大值，默认为int类型最大值-8</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MAX_ARRAY_SIZE</span> <span class="operator">=</span> Integer.MAX_VALUE - <span class="number">8</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>构造方法</strong></p>
+</blockquote>
+<p>区分构造方法是为了确认如何进行扩容</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 无参构造函数将空的对象数组DEFAULTCAPACITY_EMPTY_ELEMENTDATA数组赋予elementData</span></span><br><span class="line"><span class="comment">// 这里构造函数了只是给 elementData 赋值了一个空的数组，其实是在第一次添加元素时容量扩大至 10 的</span></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">ArrayList</span><span class="params">()</span> &#123;</span><br><span class="line">       <span class="built_in">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 参数为容量大小的有参构造，若为参数值0则将空的对象数组EMPTY_ELEMENTDATA赋予elementData</span></span><br><span class="line"><span class="comment">// 若参数值不为0则将一个大小为该参数值的对象数组赋予elementData</span></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">ArrayList</span><span class="params">(<span class="type">int</span> initialCapacity)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="built_in">this</span>.elementData = <span class="keyword">new</span> <span class="title class_">Object</span>[initialCapacity];</span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">           <span class="built_in">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Illegal Capacity: &quot;</span>+</span><br><span class="line">                                              initialCapacity);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 参数为集合类型的有参构造，若作为参数的集合大小为0则将空的对象数组EMPTY_ELEMENTDATA赋予elementData</span></span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> &#123;   </span><br><span class="line">       Object[] a = c.toArray();</span><br><span class="line">       <span class="keyword">if</span> ((size = a.length) != <span class="number">0</span>) &#123;  </span><br><span class="line">           <span class="keyword">if</span> (c.getClass() == ArrayList.class) &#123; </span><br><span class="line">               elementData = a;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               elementData = Arrays.copyOf(a, size, Object[].class);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>add()</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 先确认ArrayList内部容量</span></span><br><span class="line"><span class="comment">// 再将元素添加到list尾部</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(E e)</span> &#123;</span><br><span class="line">       ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">       elementData[size++] = e;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先计算容量，根据返回值确定最终是否扩大容量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">ensureCapacityInternal</span><span class="params">(<span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">       ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果elementData和DEFAULTCAPACITY_EMPTY_ELEMENTDATA相等即是由无参构造的，则在默认容量10和size+1中选较大的</span></span><br><span class="line"><span class="comment">// 并且若为第一次调用，即第一次添加元素，此时DEFAULT_CAPACITY为10，而size+1为0，故会返回默认容量10</span></span><br><span class="line"><span class="comment">// 若不相等，即是通过有参构造初始化的ArrayList，此时ArrayList是有size的，则返回size+1，</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">calculateCapacity</span><span class="params">(Object[] elementData, <span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">           <span class="keyword">return</span> Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> minCapacity;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果需要的容量大于 elementData 的大小，则对集合进行扩容</span></span><br><span class="line"><span class="comment">// 显然由无参构造初始化的ArrayList在第一次添加元素时 elementData 的长度为0</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">ensureExplicitCapacity</span><span class="params">(<span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">           grow(minCapacity);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 默认是先将扩容至原来容量的 1.5 倍，比较之后决定是使用参数值得容量大小还是扩容为原本的1.5倍</span></span><br><span class="line"><span class="comment">// 如果超过最大容量限制则调用hugeCapacity()方法决定是否使用Integer类型的最大值作为扩容大小</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">grow</span><span class="params">(<span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">oldCapacity</span> <span class="operator">=</span> elementData.length;</span><br><span class="line">       <span class="type">int</span> <span class="variable">newCapacity</span> <span class="operator">=</span> oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">       <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">           newCapacity = minCapacity;</span><br><span class="line">       <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">           newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">       elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">hugeCapacity</span><span class="params">(<span class="type">int</span> minCapacity)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">OutOfMemoryError</span>();</span><br><span class="line">       <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">           Integer.MAX_VALUE :</span><br><span class="line">           MAX_ARRAY_SIZE;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>remove()</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据下标移除ArrayList中的指定元素</span></span><br><span class="line"><span class="comment">// 先判断index是否合法</span></span><br><span class="line"><span class="comment">// 如果要移除的元素不是最后一个则利用System.arraycopy()方法拷贝数组，即将index之后的元素全部向前移动一个元素单位</span></span><br><span class="line"><span class="comment">// 将elementData数组中最后一个元素置为null</span></span><br><span class="line">   <span class="keyword">public</span> E <span class="title function_">remove</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">       rangeCheck(index);</span><br><span class="line">       modCount++;</span><br><span class="line">       <span class="type">E</span> <span class="variable">oldValue</span> <span class="operator">=</span> elementData(index);</span><br><span class="line">       <span class="type">int</span> <span class="variable">numMoved</span> <span class="operator">=</span> size - index - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">           System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                            numMoved);</span><br><span class="line">       elementData[--size] = <span class="literal">null</span>; <span class="comment">// clear to let GC do its work</span></span><br><span class="line">       <span class="keyword">return</span> oldValue;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 根据元素对象进行移除</span></span><br><span class="line"><span class="comment">// 将要删除的元素o分为是否null进行处理，然后for循环找到第一个与o相同的元素，</span></span><br><span class="line"><span class="comment">// 素下标调用fastRemove()方法进行删除，该方法与remove()基本相似</span></span><br><span class="line">   <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">remove</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (o == <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; size; index++)</span><br><span class="line">               <span class="keyword">if</span> (elementData[index] == <span class="literal">null</span>) &#123;</span><br><span class="line">                   fastRemove(index);</span><br><span class="line">                   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>; index &lt; size; index++)</span><br><span class="line">               <span class="keyword">if</span> (o.equals(elementData[index])) &#123;</span><br><span class="line">                   fastRemove(index);</span><br><span class="line">                   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">fastRemove</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">       modCount++;</span><br><span class="line">       <span class="type">int</span> <span class="variable">numMoved</span> <span class="operator">=</span> size - index - <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">if</span> (numMoved &gt; <span class="number">0</span>)</span><br><span class="line">           System.arraycopy(elementData, index+<span class="number">1</span>, elementData, index,</span><br><span class="line">                            numMoved);</span><br><span class="line">       elementData[--size] = <span class="literal">null</span>; <span class="comment">// clear to let GC do its work</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>get()</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实现比较简单，调用数组的随机访问</span></span><br><span class="line">	<span class="comment">// checkForComodification()用于实现Java的fast-fail机制</span></span><br><span class="line">	<span class="keyword">public</span> E <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">   </span><br><span class="line">        rangeCheck(index);</span><br><span class="line">        checkForComodification();</span><br><span class="line">        <span class="keyword">return</span> ArrayList.<span class="built_in">this</span>.elementData(offset + index);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>关于fast-fail</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>fail-fast 机制，即快速失败机制，是Java集合(Collection)中的一种错误检测机制。</p>
+</li>
+<li>
+<p>当在迭代集合的过程中该集合在结构上发生改变的时候，就有可能会发生fail-fast，即抛出 ConcurrentModificationException异常。fail-fast机制并不保证在不同步的修改下一定会抛出异常，它只是尽最大努力去抛出，所以这种机制一般仅用于检测bug</p>
+</li>
+<li>
+<p>ArrayList底层是基于数组实现的动态容量可变的数据结构</p>
+</li>
+<li>
+<p>ArrayList的扩容机制默认是扩大为原始容量的1.5倍</p>
+</li>
+<li>
+<p>ArrayList实现了RandomAcess接口，支持高效的快速随机访问，查找效率高</p>
+</li>
+<li>
+<p>ArrayList对于增删操作效率较低，因为是基于数组的实现的数据结构，插入或者删除一个元素时需要大量的移动操作</p>
+</li>
+<li>
+<p>ArrayList是线程不安全的类,如果你想用线程安全的,可以用Vector，或者追加sychornized修饰符</p>
+</li>
+<li>
+<p>ArrayList需要在列尾预留一定空间</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Java杂记01】关于序列化和Serializable（序列化）接口</title>
+    <url>/2020/07/04/%E3%80%90Java%E6%9D%82%E8%AE%B001%E3%80%91%E5%85%B3%E4%BA%8E%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8CSerializable%EF%BC%88%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%89%E6%8E%A5%E5%8F%A3/</url>
     <content><![CDATA[<h1>什么是序列化？</h1>
 <blockquote>
 <p>把原本<strong>在内存中的对象状态</strong>变成<strong>可存储或传输的过程</strong>称之为<strong>序列化</strong>。</p>
@@ -34,8 +131,9 @@
         <category>Java</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
         <tag>java</tag>
+        <tag>数据库</tag>
+        <tag>Web开发</tag>
       </tags>
   </entry>
   <entry>
@@ -72,13 +170,277 @@
 <p>1、转发速度快</p>
 <p>2、转发只能访问当前的web应用程序，当需要访问别的web应用程序上的资源的时候便只能使用重定向</p>
 ]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>后端</category>
+      </categories>
       <tags>
         <tag>Web开发</tag>
       </tags>
   </entry>
   <entry>
-    <title>【bug宝典01-Idea&amp;Spring】关于Intellij IDEA Spring configuration check</title>
-    <url>/2020/07/03/%E3%80%90bug%E5%AE%9D%E5%85%B801-Idea&amp;Spring%E3%80%91%E5%85%B3%E4%BA%8EIntellij%20IDEA%20Spring%20configuration%20check/</url>
+    <title>【Web开发杂记03】前后端时间数据格式化注解@DateTimeFomat和@JsonFormat</title>
+    <url>/2021/02/26/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B003%E3%80%91%E5%89%8D%E5%90%8E%E7%AB%AF%E6%97%B6%E9%97%B4%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%B3%A8%E8%A7%A3@DateTimeFomat%E5%92%8C@JsonFormat/</url>
+    <content><![CDATA[<blockquote>
+<p>所在包：org.springframework.format.annotation.DateTimeFormat</p>
+<p>springframework的注解，一般用来对Date（java.util.Date）类型成员变量的传入的规范化</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@DateTimeFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>所在包：com.fasterxml.jackson.annotation.JsonFormat</p>
+<p>@JsonFormat是一个时间格式化注解，它只会在类似@ResponseBody往前端返回json数据的时候，才会返回按规定的格式化的时间，直接使用System.out.println()输出的话，仍然是类似“Fri Feb 26 20:05:20 CST 2021”的时间样式。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;,timezone = &quot;GMT+8&quot;)</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：</p>
+<p>  1、@JsonFormat是jackson包里面的一个注解，但spring-boot-starter-web依赖已包含fasterxml依赖，若无spring-boot-starter-web依赖则需引入jackson相关依赖</p>
+<p>  2、@JsonFormat在序列化时间时是按照国际标准时间GMT进行格式化的，而在国内默认时区使用的是CST时区，两者相差8小时（比国内早8小时），因此需要追加<code>timezone = &quot;GMT+8&quot;</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>Web开发</tag>
+        <tag>spring</tag>
+        <tag>spring-boot</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记02】使用MybatisPlus时不要Mybatis原生的SqlSessionFactory</title>
+    <url>/2021/02/24/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B002%E3%80%91%E4%BD%BF%E7%94%A8MybatisPlus%E6%97%B6%E4%B8%8D%E8%A6%81Mybatis%E5%8E%9F%E7%94%9F%E7%9A%84SqlSessionFactory/</url>
+    <content><![CDATA[<h2 id="不要使用mybatis原生的sqlsessionfactory-而应使用mybatissqlsessionfactory">不要使用Mybatis原生的SqlSessionFactory，而应使用MybatisSqlSessionFactory。</h2>
+<ol>
+<li>依赖关系如下 因此会在使用Mybaits-Plus时默认的时Mybatis原生的SqlSessionFactory</li>
+<li>因为MybatisPlus中自定义了MybatisSqlSessionFactoryBean这个类，而这个类是实现了FactoryBean<SqlSessionFactory>, InitializingBean, ApplicationListener<ApplicationEvent>这些接口，而在Mybatis中有一个SqlSessionFactoryBean类也实现了这些接口，所以在MybatisPlus的配置文件中配置SqlSessionFactoryBean时需要换成MybatisPlus中自定义的这个类MyBatisSqlSessionFactoryBean，否则使用原生的SqlSessionFactoryBean会产生很多问题，这也是官方文档出现-invalid-bound-statement-not-found-异常中的最后第4点特别说明并推荐的</li>
+</ol>
+<p>相应的配置类如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.MybatisConfiguration;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.config.GlobalConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Primary;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.PathMatchingResourcePatternResolver;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.EnableTransactionManagement;</span><br><span class="line"><span class="keyword">import</span> zeyfra.com.aspect.mybatis_plus.MyMetaObjectHandler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MyBatis-Plus配置类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZeyFra</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/2/14 13:27</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;zeyfra.com.modules.**.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean(&quot;sqlSessionFactory&quot;)</span></span><br><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="keyword">public</span> SqlSessionFactory <span class="title function_">sqlSessionFactory</span><span class="params">(<span class="meta">@Autowired</span> <span class="meta">@Qualifier(&quot;dataSource&quot;)</span> DataSource dataSource)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 未使用MyBatis-Plus的分页插件的小伙伴可忽略此部分</span></span><br><span class="line">        <span class="comment">// MybatisPlus内部拦截器</span></span><br><span class="line">        <span class="comment">// 为自动分页插件设置DB类型</span></span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">mybatisPlusInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">        mybatisPlusInterceptor.addInnerInterceptor(<span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>(DbType.MYSQL));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 可添加自定义拦截器，没有自定义拦截器的小伙伴可忽略此部分</span></span><br><span class="line">        <span class="comment">// MybatisConfiguration</span></span><br><span class="line">        <span class="type">MybatisConfiguration</span> <span class="variable">mybatisConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisConfiguration</span>();</span><br><span class="line">        mybatisConfiguration.addInterceptor(mybatisPlusInterceptor);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开启缓存，可自行选择</span></span><br><span class="line">        mybatisConfiguration.setCacheEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用MybatisSqlSessionFactoryBean</span></span><br><span class="line">        <span class="type">MybatisSqlSessionFactoryBean</span> <span class="variable">sqlSessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisSqlSessionFactoryBean</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置数据源</span></span><br><span class="line">        sqlSessionFactoryBean.setDataSource(dataSource);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 添加MybatisConfiguration</span></span><br><span class="line">        sqlSessionFactoryBean.setConfiguration(mybatisConfiguration);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置mapper相应的xml路径</span></span><br><span class="line">        sqlSessionFactoryBean.setMapperLocations(<span class="keyword">new</span> <span class="title class_">PathMatchingResourcePatternResolver</span>()</span><br><span class="line">                .getResources(<span class="string">&quot;classpath:zeyfra/com/modules/**/*.xml&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回MybatisSqlSessionFactoryBean从而替代原生的sqlSessionFactory</span></span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注意：">注意：</h2>
+<p><strong>1、使用MybatisSqlSessionFactory之后配置应重新在此注入相应的拦截器</strong></p>
+<p><strong>2、在3.4.0版本过后已弃用PaginationInterceptor，应使用MybatisPlusInterceptor添加自动分页插件PaginationInnerInterceptor</strong></p>
+<p><strong>3、应在自动分页插件设置DB类型，否则容易出现分页查询后total为0的问题</strong></p>
+<p><strong>4、pageHelper依赖会与自动分页插件产生冲突，也会出现分页查询后total为0的问题</strong></p>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>spring-boot</tag>
+        <tag>mysql</tag>
+        <tag>mybatis-plus</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记05】关于Element-UI中的el-upload组件如何判断用户是否添加了文件的问题</title>
+    <url>/2021/03/02/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B005%E3%80%91%E5%85%B3%E4%BA%8EElement-UI%E4%B8%AD%E7%9A%84el-upload%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E7%94%A8%E6%88%B7%E6%98%AF%E5%90%A6%E6%B7%BB%E5%8A%A0%E4%BA%86%E6%96%87%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<blockquote>
+<p>在官方GitHub issue查找得知，el-upload并不支持自动更新其file-list参数的值，即在用户添加文件后file-list并不会自动更新，依旧为空数组，解决方案如下</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 如此可获得已添加的文件信息</span></span><br><span class="line"><span class="keyword">var</span> files = <span class="variable language_">this</span>.<span class="property">$refs</span>.<span class="property">upload</span>.<span class="property">uploadFiles</span></span><br><span class="line"><span class="keyword">if</span>(files.<span class="property">length</span> === <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="variable language_">this</span>.$message(&#123;</span><br><span class="line">        <span class="attr">message</span>: <span class="string">&#x27;请选择文件&#x27;</span>,</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;warning&#x27;</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>element-ui</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记04】关于如何获得Mybatis-Plus在插入对应为自增长主键但并未对该主键赋值的实体类之后其主键值</title>
+    <url>/2021/03/01/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B004%E3%80%91%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97Mybatis-Plus%E5%9C%A8%E6%8F%92%E5%85%A5%E5%AF%B9%E5%BA%94%E4%B8%BA%E8%87%AA%E5%A2%9E%E9%95%BF%E4%B8%BB%E9%94%AE%E4%BD%86%E5%B9%B6%E6%9C%AA%E5%AF%B9%E8%AF%A5%E4%B8%BB%E9%94%AE%E8%B5%8B%E5%80%BC%E7%9A%84%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%B9%8B%E5%90%8E%E5%85%B6%E4%B8%BB%E9%94%AE%E5%80%BC/</url>
+    <content><![CDATA[<p>  对应数据库中某张表并未设置主键值，但其主键为自增长类型的实体类，在使用Mybatis-Plus做insert操作即save()保存未有至数据库对应后，相应的实体类中的主键变量会相应的由Mybatis-Plus赋值，即为刚存入数据库中的主键值</p>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>mysql</tag>
+        <tag>mybatis-plus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记06】关于在Element UI的el-dialog组件中使用harts产生Cannot read property ‘getAttribute‘ of null</title>
+    <url>/2021/03/03/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B006%E3%80%91%E5%85%B3%E4%BA%8E%E5%9C%A8Element%20UI%E7%9A%84el-dialog%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8harts%E4%BA%A7%E7%94%9FCannot%20read%20property%20%E2%80%98getAttribute%E2%80%98%20of%20null/</url>
+    <content><![CDATA[<h3 id="问题描述">问题描述</h3>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;Cannot read property &#x27;getAttribute&#x27; of null&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;ECharts Can&#x27;t get dom width or height!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Initialize failed: invalid dom&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="原因">原因</h3>
+<p>当我们打开el-dialog时，dom元素是还没有渲染完成的</p>
+<h3 id="解决">解决</h3>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 方案一：使用setTimeout定时间器</span></span><br><span class="line"><span class="title function_">open</span>(<span class="params"></span>)&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dialogVisible</span> = <span class="literal">true</span>;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">   </span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setMyCharts</span>();</span><br><span class="line">    &#125;,<span class="number">300</span>)</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// 方案二【推荐】：使用Vue.nextTick()</span></span><br><span class="line"><span class="title function_">open</span>(<span class="params"></span>)&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dialogVisible</span> = <span class="literal">true</span>;</span><br><span class="line">    <span class="variable language_">this</span>.$nextTick(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">   </span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setMyCharts</span>();</span><br><span class="line">      &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于Vue.netTick()：</p>
+</blockquote>
+<p>在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后立即使用这个方法，获取更新后的 DOM。简单来说当数据更新了，在dom中渲染后，自动执行该函数</p>
+<h3 id="问题描述：">问题描述：</h3>
+<p>从A页面跳转到B页面，将A页面的参数传递给B页面</p>
+<p><strong>业务场景</strong>：查看某条数据的详情跳转至详情页面，在详情页面中显示</p>
+<p><strong>解决</strong>：</p>
+<p>一、编程式的导航</p>
+<p>1、借助this.$router.push()</p>
+<p>对于该方法来说，传参有两种方式。一种是通过params，一种是query。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前者的使用必须对该路由进行命名才能使用</span></span><br><span class="line"><span class="built_in">this</span>.$router.push(&#123;</span><br><span class="line">   name: <span class="string">&#x27;路由名称&#x27;</span>&#125;, params:&#123;</span><br><span class="line">    key：Value &#125;)</span><br><span class="line"><span class="comment">// 后者通过路由地址即可</span></span><br><span class="line"><span class="built_in">this</span>.$router.push(&#123;</span><br><span class="line">   path: <span class="string">&#x27;路由地址&#x27;</span>&#125;, query:&#123;</span><br><span class="line">    key：Value &#125;)</span><br></pre></td></tr></table></figure>
+<p>二、声明式的导航，使用router-link</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;router-link :to=<span class="string">&quot;&#123; name: &#x27;路由名称&#x27;, params:&#123; key：Value &#125;&quot;</span>&gt;点击跳转&lt;/router-link&gt;</span><br><span class="line">&lt;router-link :to=<span class="string">&quot;&#123; name: &#x27;路由地址&#x27;, query:&#123; key：Value &#125;&quot;</span>&gt;点击跳转&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：</p>
+<p>1、使用query和params的区别：query 参数拼接在url, 用户可修改, params 类似post 用户不可见，因此推荐params的方式</p>
+<p>2、接收时参数都是在route中，而不是在router</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路由事件</span></span><br><span class="line"><span class="type">let</span> <span class="variable">params</span> <span class="operator">=</span> &#123;</span><br><span class="line">   </span><br><span class="line">    id: <span class="built_in">this</span>.id,</span><br><span class="line">    userName: <span class="built_in">this</span>.userName</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">this</span>.$router.push(&#123;</span><br><span class="line">   </span><br><span class="line">    name: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    params</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// B页面接收</span></span><br><span class="line">created() &#123;</span><br><span class="line">   </span><br><span class="line">    const &#123;</span><br><span class="line">    id, userName &#125; = <span class="built_in">this</span>.$route.params</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>element-ui</tag>
+        <tag>vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记07】关于在el-tab或者 el-dialog之中ECharts图表的宽度显示不正确的问题</title>
+    <url>/2021/03/05/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B007%E3%80%91%E5%85%B3%E4%BA%8E%E5%9C%A8el-tab%E6%88%96%E8%80%85%20el-dialog%E4%B9%8B%E4%B8%ADECharts%E5%9B%BE%E8%A1%A8%E7%9A%84%E5%AE%BD%E5%BA%A6%E6%98%BE%E7%A4%BA%E4%B8%8D%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h3 id="问题描述：">问题描述：</h3>
+<p>有的时候将 ECharts 放到 el-tab或者 el-dialog之中，会发现图表的宽度会显示的不那么正确</p>
+<h3 id="原因：">原因：</h3>
+<p>ECharts 本身并不是自适应的，当父级容器的宽度发生变化的时候需要手动调用它的 .resize() 方法。</p>
+<h3 id="解决：">解决：</h3>
+<p>在dialog出现之后再init图表即可</p>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>element-ui</tag>
+        <tag>vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记09】关于在Vue中使用ElmenetUI组件如何实现动态表格</title>
+    <url>/2021/03/12/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B009%E3%80%91%E5%85%B3%E4%BA%8E%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8ElmenetUI%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E8%A1%A8%E6%A0%BC/</url>
+    <content><![CDATA[<p>​</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">v-loading</span>=<span class="string">&quot;listLoading&quot;</span> <span class="attr">:data</span>=<span class="string">&quot;tableDataList&quot;</span> <span class="attr">border</span> <span class="attr">fit</span> <span class="attr">highlight-current-row</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> </span></span><br><span class="line"><span class="tag">		<span class="attr">v-for</span>=<span class="string">&quot;item in tableColumnLsit&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">:key</span>=<span class="string">&quot;item.property&quot;</span> </span></span><br><span class="line"><span class="tag">		<span class="attr">:label</span>=<span class="string">&quot;item.propertyName&quot;</span> </span></span><br><span class="line"><span class="tag">		<span class="attr">:property</span>=<span class="string">&quot;item.property&quot;</span></span></span><br><span class="line"><span class="tag">		<span class="attr">align</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">&quot;scope&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; scope.row[scope.column.property] &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>tableColumnList</code>：表格标题list</p>
+<p><code>tableDataList</code>：数据List，其内容应与标题list对应</p>
+<blockquote>
+<p>注：应优先获得<code>tableColumnList</code>再去请求<code>tableDataList</code>，<code>listLoading</code>可在获取<code>tableColumnList</code>时设置为false，获取完<code>tableDataList</code>后再设置true，这样载入动画会更流畅。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>element-ui</tag>
+        <tag>vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记10】关于如何在Mybatis-Plus中添加自定义SQL拦截器</title>
+    <url>/2021/03/16/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B010%E3%80%91%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%9C%A8Mybatis-Plus%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89SQL%E6%8B%A6%E6%88%AA%E5%99%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>之前ZeyFra在 <a href="http://zeyfra.top/2021/02/24/%E3%80%90web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B002%E3%80%91%E4%BD%BF%E7%94%A8MybatisPlus%E6%97%B6%E4%B8%8D%E8%A6%81Mybatis%E5%8E%9F%E7%94%9F%E7%9A%84SqlSessionFactory/">这</a>一文中提到过，使用Mybatis-Plus时最好使用MybatisSqlSessionFactory，而不是使用Mybatis原生的SqlSessionFactory，这也是官方文档的建议，也感兴趣的小伙伴可以自行前往查看。</p>
+</blockquote>
+<h2 id="业务需求">业务需求</h2>
+<p>相信不少小伙伴在JavaEE的开发中会有这么一个需求，希望能够在执行insert或update的sql语句时程序能够自动的为我们在相应的字段上添加相应的时间，及通过SQL拦截器实现对insert语句和update语句添加相应的创建时间和更新时间</p>
+<h2 id="解决方案">解决方案</h2>
+<p><strong>1、首先在实体类添加相应的注解</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModel;</span><br><span class="line"><span class="keyword">import</span> io.swagger.annotations.ApiModelProperty;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.EqualsAndHashCode;</span><br><span class="line"><span class="keyword">import</span> org.springframework.format.annotation.DateTimeFormat;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * 用户表</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZeyFra</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021-03-16</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@EqualsAndHashCode(callSuper = false)</span></span><br><span class="line"><span class="meta">@ApiModel(value=&quot;User对象&quot;, description=&quot;用户表&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;用户编号&quot;)</span></span><br><span class="line">    <span class="meta">@TableId(value = &quot;user_id&quot;, type = IdType.AUTO)</span></span><br><span class="line">    <span class="keyword">private</span> Integer userId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;用户账号名&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;用户密码&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@DateTimeFormat(pattern = &quot;yyyy-MM-dd HH:mm&quot;)</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;创建时间&quot;)</span></span><br><span class="line">    <span class="meta">@TableField(fill = FieldFill.INSERT)</span></span><br><span class="line">    <span class="keyword">private</span> Date createdTime;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@DateTimeFormat(pattern = &quot;yyyy-MM-dd HH:mm&quot;)</span></span><br><span class="line">    <span class="meta">@ApiModelProperty(value = &quot;更新时间&quot;)</span></span><br><span class="line">    <span class="meta">@TableField(fill = FieldFill.UPDATE)</span></span><br><span class="line">    <span class="keyword">private</span> Date updateTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2、编写相应的处理器处理注解</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.reflection.MetaObject;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZeyFra</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/3/16 14:55</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyMetaObjectHandler</span> <span class="keyword">implements</span> <span class="title class_">MetaObjectHandler</span> &#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写插入时候的填充策略</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> metaObject</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertFill</span><span class="params">(MetaObject metaObject)</span> &#123;</span><br><span class="line">   </span><br><span class="line">        log.info(<span class="string">&quot;start insert fill ....&quot;</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 注意：</span></span><br><span class="line"><span class="comment">         *  1、以下三种方法任选其一</span></span><br><span class="line"><span class="comment">         *  2、this.setFieldValByName()方法已过时不再推荐使用</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">// 起始版本 3.3.0(推荐使用)</span></span><br><span class="line">        <span class="built_in">this</span>.strictInsertFill(metaObject, <span class="string">&quot;createTime&quot;</span>, LocalDateTime.class, LocalDateTime.now()); </span><br><span class="line">        <span class="comment">// 起始版本 3.3.3(推荐)</span></span><br><span class="line">        <span class="built_in">this</span>.strictUpdateFill(metaObject, <span class="string">&quot;createTime&quot;</span>, () -&gt; LocalDateTime.now(), LocalDateTime.class); </span><br><span class="line">        <span class="comment">// 也可以使用(3.3.0 该方法有bug)</span></span><br><span class="line">        <span class="built_in">this</span>.fillStrategy(metaObject, <span class="string">&quot;createTime&quot;</span>, LocalDateTime.now()); </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写修改时候的填充策略</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> metaObject</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">updateFill</span><span class="params">(MetaObject metaObject)</span> &#123;</span><br><span class="line">   </span><br><span class="line">        log.info(<span class="string">&quot;start update fill ...&quot;</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 注意：</span></span><br><span class="line"><span class="comment">         *  1、以下三种方法任选其一</span></span><br><span class="line"><span class="comment">         *  2、this.setFieldValByName()方法已过时不再推荐使用</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">// 起始版本 3.3.0(推荐使用)</span></span><br><span class="line">        <span class="built_in">this</span>.strictInsertFill(metaObject, <span class="string">&quot;updateTime&quot;</span>, LocalDateTime.class, LocalDateTime.now()); </span><br><span class="line">        <span class="comment">// 起始版本 3.3.3(推荐)</span></span><br><span class="line">        <span class="built_in">this</span>.strictUpdateFill(metaObject, <span class="string">&quot;updateTime&quot;</span>, () -&gt; LocalDateTime.now(), LocalDateTime.class); </span><br><span class="line">        <span class="comment">// 也可以使用(3.3.0 该方法有bug)</span></span><br><span class="line">        <span class="built_in">this</span>.fillStrategy(metaObject, <span class="string">&quot;updateTime&quot;</span>, LocalDateTime.now()); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、若以使用MybatisSqlSessionFactory，应在相应配置中添加处理器（未使将Mybatis原生SqlSessionFactoryBean替换成MybatisSqlSessionFactory的小伙伴可以跳过此步骤）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.MybatisConfiguration;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.config.GlobalConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Primary;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.PathMatchingResourcePatternResolver;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.EnableTransactionManagement;</span><br><span class="line"><span class="keyword">import</span> zeyfra.com.aspect.mybatis_plus.MyMetaObjectHandler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Mybatis-Plus配置类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZeyFra</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/2/16 13:27</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;zeyfra.com.modules.**.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean(&quot;sqlSessionFactory&quot;)</span></span><br><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="keyword">public</span> SqlSessionFactory <span class="title function_">sqlSessionFactory</span><span class="params">(<span class="meta">@Autowired</span> <span class="meta">@Qualifier(&quot;dataSource&quot;)</span> DataSource dataSource)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 创建MybatisConfiguration</span></span><br><span class="line">        <span class="type">MybatisConfiguration</span> <span class="variable">mybatisConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisConfiguration</span>();</span><br><span class="line">        <span class="comment">// MybatisPlus内部过滤器</span></span><br><span class="line">        <span class="comment">// 将自动分页插件设置DB类型</span></span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">mybatisPlusInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">        mybatisPlusInterceptor.addInnerInterceptor(<span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>(DbType.MYSQL));</span><br><span class="line">        <span class="comment">// 添加自定义拦截器</span></span><br><span class="line">        mybatisConfiguration.addInterceptor(mybatisPlusInterceptor);</span><br><span class="line">        <span class="comment">// 开启缓存</span></span><br><span class="line">        mybatisConfiguration.setCacheEnabled(<span class="literal">true</span>);</span><br><span class="line">        <span class="comment">//创建MybatisSqlSessionFactoryBean</span></span><br><span class="line">        <span class="type">MybatisSqlSessionFactoryBean</span> <span class="variable">sqlSessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisSqlSessionFactoryBean</span>();</span><br><span class="line">        <span class="comment">// 设置数据源</span></span><br><span class="line">        sqlSessionFactoryBean.setDataSource(dataSource);</span><br><span class="line">        <span class="comment">// 在GlobalConfig中添加sql拦截器，即相应的注解处理器</span></span><br><span class="line">        <span class="type">GlobalConfig</span> <span class="variable">globalConfig</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GlobalConfig</span>();</span><br><span class="line">        globalConfig.setMetaObjectHandler(<span class="keyword">new</span> <span class="title class_">MyMetaObjectHandler</span>());</span><br><span class="line">        <span class="comment">// 添加在GlobalConfig中添加sql拦截器</span></span><br><span class="line">        sqlSessionFactoryBean.setGlobalConfig(globalConfig);</span><br><span class="line">        <span class="comment">// 添加MybatisConfiguration</span></span><br><span class="line">        sqlSessionFactoryBean.setConfiguration(mybatisConfiguration);</span><br><span class="line">        <span class="comment">// 设置mapper相应的xml路径</span></span><br><span class="line">        sqlSessionFactoryBean.setMapperLocations(<span class="keyword">new</span> <span class="title class_">PathMatchingResourcePatternResolver</span>()</span><br><span class="line">                .getResources(<span class="string">&quot;classpath:zeyfra/com/modules/**/*.xml&quot;</span>));</span><br><span class="line">        <span class="comment">// 返回MybatisSqlSessionFactoryBean从而替代原生的sqlSessionFactory</span></span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="问题描述：">问题描述：</h2>
+<p>最近开发的时候脑溢血了，最基本的东西给忘了，我在get方法的请求中使用了data，还一直纳闷为啥Controller无法接受到参数，我也是服了我自己，更详细的内容可参考 <a href="http://www.axios-js.com/zh-cn/docs/#%E8%AF%B7%E6%B1%82%E9%85%8D%E7%BD%AE">Axios的官方文档的请求配置</a></p>
+<h2 id="解决方案：">解决方案：</h2>
+<ul>
+<li>pramas是即将与请求一起发送的 URL 参数，任何请求方法都可使用，但必须是一个无格式对象(plain object)或URLSearchParams对象，相应的Controller在接收时可将对应的Params封装成相应的对象，但不可用@RequestBody注解`,否则会接收不到参数并有相应的警告</li>
+<li>data是作为请求主体被发送的数据，只适用于这些请求方法 PUT，POST， 和 PATCH</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>spring-boot</tag>
+        <tag>mybatis-plus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记08】关于在Vue切换路由时如何传递参数的问题</title>
+    <url>/2021/03/07/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B008%E3%80%91%E5%85%B3%E4%BA%8E%E5%9C%A8Vue%E5%88%87%E6%8D%A2%E8%B7%AF%E7%94%B1%E6%97%B6%E5%A6%82%E4%BD%95%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="问题描述：">问题描述：</h2>
+<blockquote>
+<p>从A页面跳转到B页面，将A页面的参数传递给B页面<br>
+业务场景：查看某条数据的详情跳转至详情页面，在详情页面中显示</p>
+</blockquote>
+<h2 id="解决：">解决：</h2>
+<p><strong>一、编程式的导航</strong></p>
+<blockquote>
+<p>借助this.$router.push()</p>
+<p>对于该方法来说，传参有两种方式。一种是通过params，一种是query。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前者的使用必须对该路由进行命名才能使用</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">name</span>: <span class="string">&#x27;路由名称&#x27;</span>&#125;, <span class="attr">params</span>:&#123; key：<span class="title class_">Value</span> &#125;)</span><br><span class="line"><span class="comment">// 后者通过路由地址即可</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;路由地址&#x27;</span>&#125;, <span class="attr">query</span>:&#123; key：<span class="title class_">Value</span> &#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>二、声明式的导航，使用<code>router-link</code></strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123; name: &#x27;路由名称&#x27;, params:&#123; key：Value &#125;&quot;</span>&gt;</span>点击跳转<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123; name: &#x27;路由地址&#x27;, query:&#123; key：Value &#125;&quot;</span>&gt;</span>点击跳转<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：</p>
+<p>1、使用<code>query</code>和<code>params</code>的区别：<code>query </code>参数拼接在url，用户可修改，<code>params</code> 类似post 用户不可见，因此<strong>推荐params</strong>的方式</p>
+<p>2、接收时参数都是在route中，而不是在router</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 路由事件</span></span><br><span class="line"><span class="keyword">let</span> params = &#123;</span><br><span class="line">	<span class="attr">id</span>: <span class="variable language_">this</span>.<span class="property">id</span>,</span><br><span class="line">    <span class="attr">userName</span>: <span class="variable language_">this</span>.<span class="property">userName</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;B&#x27;</span>,</span><br><span class="line">    params</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// B页面接收</span></span><br><span class="line"><span class="title function_">created</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; id, userName &#125; = <span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">params</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记11】关于使用axios.js发起https请求中所携带参数pramas和data的区别</title>
+    <url>/2021/03/16/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B011%E3%80%91%E5%85%B3%E4%BA%8EAxios%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0pramas%E5%92%8Cdata%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<blockquote>
+<p>最近开发的时候脑溢血了，最基本的东西给忘了，我在<code>get</code>方法的请求中使用了<code>data</code>，还一直纳闷为啥<code>Controller</code>无法接受到参数，我也是服了我自己，更详细的内容可参考<a href="http://www.axios-js.com/zh-cn/docs/#%E8%AF%B7%E6%B1%82%E9%85%8D%E7%BD%AE">Axios的官方文档的请求配置</a></p>
+</blockquote>
+<ul>
+<li>
+<p><code>pramas</code>是即将与请求一起发送的 <code>URL</code> 参数，任何请求方法都可使用，但必须是一个<code>无格式对象(plain object)</code>或<code>URLSearchParams对象</code>，相应的<code>Controller</code>在接收时可将对应的Params封装成相应的对象，但不可用<code>@RequestBody</code>注解`,否则会接收不到参数并有相应的警告</p>
+</li>
+<li>
+<p><code>data</code>是作为请求主体被发送的数据，只适用于这些请求方法 <code>PUT</code>，<code>POST</code>， 和 <code>PATCH</code></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Web技术</category>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>Web开发</tag>
+        <tag>vue.js</tag>
+        <tag>axios.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【bug宝典01】关于IDEA中Spring configuration check检查</title>
+    <url>/2020/07/03/%E3%80%90bug%E5%AE%9D%E5%85%B801%E3%80%91%E5%85%B3%E4%BA%8EIDEA%E4%B8%ADSpring%20configuration%20check%E6%A3%80%E6%9F%A5/</url>
     <content><![CDATA[<p><img src="https://s2.loli.net/2022/04/03/BHE9oRYvZ3O1Dey.png" alt=""></p>
 <p>这个提示不影响工程正常运行，原因是项目工程中的spring配置文件没有被IDEA所管理，解决这个问题很简单，只需要2步操作即可：</p>
 <ul>
@@ -91,15 +453,53 @@
       </categories>
       <tags>
         <tag>java</tag>
-        <tag>ZeyFraのbug宝典</tag>
         <tag>spring</tag>
-        <tag>spring boot</tag>
+        <tag>spring-boot</tag>
+        <tag>ZeyFraのbug宝典</tag>
         <tag>idea</tag>
       </tags>
   </entry>
   <entry>
-    <title>【bug宝典03-Idea&amp;Maven】(全网最全)关于解决IDEA Auto build completed with errors 报错</title>
-    <url>/2020/09/23/%E3%80%90bug%E5%AE%9D%E5%85%B803-Idea&amp;Maven%E3%80%91(%E5%85%A8%E7%BD%91%E6%9C%80%E5%85%A8)%E5%85%B3%E4%BA%8E%E8%A7%A3%E5%86%B3IDEA%20Auto%20build%20completed%20with%20errors%20%E6%8A%A5%E9%94%99/</url>
+    <title>【bug宝典02】解决Idea基于Tomcat部署web应用控制台Tomcat日志中文乱码</title>
+    <url>/2020/07/10/%E3%80%90bug%E5%AE%9D%E5%85%B802%E3%80%91%E8%A7%A3%E5%86%B3Idea%E5%9F%BA%E4%BA%8ETomcat%E9%83%A8%E7%BD%B2web%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0Tomcat%E6%97%A5%E5%BF%97%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<h2 id="问题描述">【问题描述】</h2>
+<p>在IDEA中基于Tomcat部署web应用时，控制台中输出的tomcat日志信息中文乱码</p>
+<h2 id="解决-注意">【解决&amp;注意】</h2>
+<blockquote>
+<p><strong>看了网上大部分解决方案，基本都有如下步骤</strong></p>
+</blockquote>
+<ul>
+<li>要么添加Tomcat的启动参数：-Dfile.encoding=UTF-8</li>
+<li>要么找IDEA安装目录的bin目录下的虚拟机配置文件进行修改虚拟机编码格式</li>
+<li>要么修改tomcat目录下的日志的配置文件的，将控制控制台输出编码格式改成GBK</li>
+</ul>
+<blockquote>
+<p><strong>大家不要盲目的区跟着网上乱改</strong></p>
+</blockquote>
+<ul>
+<li>首先你要搞清楚，到底是Tomcat的日志编码问题还是IDEA的日志显示控制台编码问题</li>
+<li>不要自己改IDEA安装目录的bin目录下的.vmoptions文件，一般位置不对，IDEA通常会在用户目录下复制一个</li>
+<li>不要改Tomcat安装路径conf目录下的logging.properties编码为GBK，这会导致调试时get/post参数乱码</li>
+<li>一般来说都是后者（前提是你的IDEA的Setting中，文件的编码格式均为UTF-8）：</li>
+</ul>
+<p><strong>添加Tomcat的启动参数：</strong></p>
+<p><img src="https://s2.loli.net/2022/04/03/tgbmzdB2WEDRxjn.png" alt=""></p>
+<p><strong>在IDEA中，点击上方Help中的Edit Custom VM Options，添加编码格式再重启IDEA即可：</strong></p>
+<p><img src="https://s2.loli.net/2022/04/03/7jykK6olW4v5xrm.png" alt=""><img src="https://s2.loli.net/2022/04/03/wXLubNMWaKr6UBT.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>bug宝典</category>
+      </categories>
+      <tags>
+        <tag>ZeyFraのbug宝典</tag>
+        <tag>idea</tag>
+        <tag>java-web</tag>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【bug宝典03】(全网最全)关于解决IDEA中Maven项目 Auto build completed with errors 报错</title>
+    <url>/2020/09/23/%E3%80%90bug%E5%AE%9D%E5%85%B803%E3%80%91(%E5%85%A8%E7%BD%91%E6%9C%80%E5%85%A8)%E5%85%B3%E4%BA%8E%E8%A7%A3%E5%86%B3IDEA%E4%B8%ADMaven%E9%A1%B9%E7%9B%AE%20Auto%20build%20completed%20with%20errors%20%E6%8A%A5%E9%94%99/</url>
     <content><![CDATA[<blockquote>
 <p>2022-04-03 这篇文章是我的csdn最猛的，哈哈，当然我也搜集了很久，希望可以帮到你</p>
 </blockquote>
@@ -133,95 +533,15 @@
       </categories>
       <tags>
         <tag>java</tag>
+        <tag>spring-boot</tag>
         <tag>ZeyFraのbug宝典</tag>
-        <tag>spring boot</tag>
         <tag>idea</tag>
         <tag>maven</tag>
       </tags>
   </entry>
   <entry>
-    <title>【web开发杂记02】使用MybatisPlus时不要Mybatis原生的SqlSessionFactory</title>
-    <url>/2021/02/24/%E3%80%90web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B002%E3%80%91%E4%BD%BF%E7%94%A8MybatisPlus%E6%97%B6%E4%B8%8D%E8%A6%81Mybatis%E5%8E%9F%E7%94%9F%E7%9A%84SqlSessionFactory/</url>
-    <content><![CDATA[<h2 id="不要使用mybatis原生的sqlsessionfactory-而应使用mybatissqlsessionfactory">不要使用Mybatis原生的SqlSessionFactory，而应使用MybatisSqlSessionFactory。</h2>
-<ol>
-<li>依赖关系如下 因此会在使用Mybaits-Plus时默认的时Mybatis原生的SqlSessionFactory</li>
-<li>因为MybatisPlus中自定义了MybatisSqlSessionFactoryBean这个类，而这个类是实现了FactoryBean<SqlSessionFactory>, InitializingBean, ApplicationListener<ApplicationEvent>这些接口，而在Mybatis中有一个SqlSessionFactoryBean类也实现了这些接口，所以在MybatisPlus的配置文件中配置SqlSessionFactoryBean时需要换成MybatisPlus中自定义的这个类MyBatisSqlSessionFactoryBean，否则使用原生的SqlSessionFactoryBean会产生很多问题，这也是官方文档出现-invalid-bound-statement-not-found-异常中的最后第4点特别说明并推荐的</li>
-</ol>
-<p>相应的配置类如下</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.MybatisConfiguration;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.config.GlobalConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Primary;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.PathMatchingResourcePatternResolver;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.EnableTransactionManagement;</span><br><span class="line"><span class="keyword">import</span> zeyfra.com.aspect.mybatis_plus.MyMetaObjectHandler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MyBatis-Plus配置类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZeyFra</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/2/14 13:27</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;zeyfra.com.modules.**.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean(&quot;sqlSessionFactory&quot;)</span></span><br><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="keyword">public</span> SqlSessionFactory <span class="title function_">sqlSessionFactory</span><span class="params">(<span class="meta">@Autowired</span> <span class="meta">@Qualifier(&quot;dataSource&quot;)</span> DataSource dataSource)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 未使用MyBatis-Plus的分页插件的小伙伴可忽略此部分</span></span><br><span class="line">        <span class="comment">// MybatisPlus内部拦截器</span></span><br><span class="line">        <span class="comment">// 为自动分页插件设置DB类型</span></span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">mybatisPlusInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">        mybatisPlusInterceptor.addInnerInterceptor(<span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>(DbType.MYSQL));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 可添加自定义拦截器，没有自定义拦截器的小伙伴可忽略此部分</span></span><br><span class="line">        <span class="comment">// MybatisConfiguration</span></span><br><span class="line">        <span class="type">MybatisConfiguration</span> <span class="variable">mybatisConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisConfiguration</span>();</span><br><span class="line">        mybatisConfiguration.addInterceptor(mybatisPlusInterceptor);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开启缓存，可自行选择</span></span><br><span class="line">        mybatisConfiguration.setCacheEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用MybatisSqlSessionFactoryBean</span></span><br><span class="line">        <span class="type">MybatisSqlSessionFactoryBean</span> <span class="variable">sqlSessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisSqlSessionFactoryBean</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置数据源</span></span><br><span class="line">        sqlSessionFactoryBean.setDataSource(dataSource);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 添加MybatisConfiguration</span></span><br><span class="line">        sqlSessionFactoryBean.setConfiguration(mybatisConfiguration);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置mapper相应的xml路径</span></span><br><span class="line">        sqlSessionFactoryBean.setMapperLocations(<span class="keyword">new</span> <span class="title class_">PathMatchingResourcePatternResolver</span>()</span><br><span class="line">                .getResources(<span class="string">&quot;classpath:zeyfra/com/modules/**/*.xml&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回MybatisSqlSessionFactoryBean从而替代原生的sqlSessionFactory</span></span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="注意：">注意：</h2>
-<p><strong>1、使用MybatisSqlSessionFactory之后配置应重新在此注入相应的拦截器</strong></p>
-<p><strong>2、在3.4.0版本过后已弃用PaginationInterceptor，应使用MybatisPlusInterceptor添加自动分页插件PaginationInnerInterceptor</strong></p>
-<p><strong>3、应在自动分页插件设置DB类型，否则容易出现分页查询后total为0的问题</strong></p>
-<p><strong>4、pageHelper依赖会与自动分页插件产生冲突，也会出现分页查询后total为0的问题</strong></p>
-]]></content>
-      <tags>
-        <tag>spring boot</tag>
-        <tag>MyBatisPlus</tag>
-        <tag>mybatis</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【bug宝典02-Idea&amp;Tomcat】解决Idea利用Tomcat部署web应用控制台Tomcat日志中文乱码</title>
-    <url>/2020/07/10/%E3%80%90bug%E5%AE%9D%E5%85%B802-Idea&amp;Tomcat%E3%80%91%E8%A7%A3%E5%86%B3Idea%E5%88%A9%E7%94%A8Tomcat%E9%83%A8%E7%BD%B2web%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0Tomcat%E6%97%A5%E5%BF%97%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</url>
-    <content><![CDATA[<h2 id="问题描述">【问题描述】</h2>
-<p>在IDEA中基于Tomcat部署web应用时，控制台中输出的tomcat日志信息中文乱码</p>
-<h2 id="解决-注意">【解决&amp;注意】</h2>
-<blockquote>
-<p><strong>看了网上大部分解决方案，基本都有如下步骤</strong></p>
-</blockquote>
-<ul>
-<li>要么添加Tomcat的启动参数：-Dfile.encoding=UTF-8</li>
-<li>要么找IDEA安装目录的bin目录下的虚拟机配置文件进行修改虚拟机编码格式</li>
-<li>要么修改tomcat目录下的日志的配置文件的，将控制控制台输出编码格式改成GBK</li>
-</ul>
-<blockquote>
-<p><strong>大家不要盲目的区跟着网上乱改</strong></p>
-</blockquote>
-<ul>
-<li>首先你要搞清楚，到底是Tomcat的日志编码问题还是IDEA的日志显示控制台编码问题</li>
-<li>不要自己改IDEA安装目录的bin目录下的.vmoptions文件，一般位置不对，IDEA通常会在用户目录下复制一个</li>
-<li>不要改Tomcat安装路径conf目录下的logging.properties编码为GBK，这会导致调试时get/post参数乱码</li>
-<li>一般来说都是后者（前提是你的IDEA的Setting中，文件的编码格式均为UTF-8）：</li>
-</ul>
-<p><strong>添加Tomcat的启动参数：</strong></p>
-<p><img src="https://s2.loli.net/2022/04/03/tgbmzdB2WEDRxjn.png" alt=""></p>
-<p><strong>在IDEA中，点击上方Help中的Edit Custom VM Options，添加编码格式再重启IDEA即可：</strong></p>
-<p><img src="https://s2.loli.net/2022/04/03/7jykK6olW4v5xrm.png" alt=""><img src="https://s2.loli.net/2022/04/03/wXLubNMWaKr6UBT.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>bug宝典</category>
-      </categories>
-      <tags>
-        <tag>ZeyFraのbug宝典</tag>
-        <tag>idea</tag>
-        <tag>乱码</tag>
-        <tag>javaweb</tag>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【数据库01】数据的独立性</title>
-    <url>/2020/03/05/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%9301%E3%80%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%8B%AC%E7%AB%8B%E6%80%A7/</url>
-    <content><![CDATA[<p><strong>数据的独立性是数据库系统的最基本的特征之一</strong> 。数据独立性是指应用程序和数据结构之间相互独立, 互不影响。在三层模式体系结构中数据独立性是指数据库系统在某一层次模式上的改变不会使它的上一层模式也发生改变的能力。正是三级模式间的两层映像保证了数据库系统中的数据具有较高的数据独立性。 数据独立性包括数据<strong>逻辑独立性</strong>和数据<strong>物理独立性</strong>。</p>
-<h2 id="逻辑独立性">逻辑独立性</h2>
-<p><strong>用户的应用程序与数据库的逻辑结构是相互独立的</strong>。即，当数据的逻辑结构改变时，用户程序也可以不变。 有了外模式/模式映像，模式改变时，如增加新的属性、修改属性的类型，只要对外模式/模式的映像做相应的改变，可使外模式保持不变，则以外模式为依据编写的应用程序就不受影响，从而应用程序不必修改，保证了数据与程序之间的逻辑独立性，也就是逻辑数据独立性。</p>
-<h2 id="物理独立性">物理独立性</h2>
-<p><strong>用户的应用程序与存储在磁盘上的数据库中数据是相互独立的</strong>。即，数据在磁盘上怎样存储由DBMS管理，用户程序不需要了解，应用程序要处理的只是数据的逻辑结构，这样当数据的物理存储改变了，应用程序不用改变。 有了模式/内模式映像，当内模式改变时，如存储设备或存储方式有所改变，只要对模式/内模式映像做相应的改变，使模式保持不变，则应用程序就不受影响，从而保证了数据与程序之间的物理独立性，称为存储数据独立性</p>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-        <tag>java</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【bug宝典04-Idea&amp;Lombok】关于Lombok Requires Annotation Processing的解决</title>
-    <url>/2020/09/23/%E3%80%90bug%E5%AE%9D%E5%85%B804-Idea&amp;Lombok%E3%80%91%E5%85%B3%E4%BA%8ELombok%20Requires%20Annotation%20Processing%E7%9A%84%E8%A7%A3%E5%86%B3/</url>
+    <title>【bug宝典04】关于Idea显示Lombok Requires Annotation Processing的解决</title>
+    <url>/2020/09/23/%E3%80%90bug%E5%AE%9D%E5%85%B804%E3%80%91%E5%85%B3%E4%BA%8EIdea%E6%98%BE%E7%A4%BALombok%20Requires%20Annotation%20Processing%E7%9A%84%E8%A7%A3%E5%86%B3/</url>
     <content><![CDATA[<h2 id="问题描述">【问题描述】</h2>
 <p>安装完或者添加lombok依赖后，启动项目时右下角弹出了这个错误 <img src="https://s2.loli.net/2022/04/03/o4tT9AOjzYskr3E.png" alt=""></p>
 <h2 id="解决方案">【解决方案】</h2>
@@ -233,13 +553,37 @@
 <h3 id="所以很简单了吧-最笨的办法就是点击这个超链接啦-或者在这里进行配置">所以很简单了吧，最笨的办法就是点击这个超链接啦~或者在这里进行配置</h3>
 <p><img src="https://s2.loli.net/2022/04/03/NmtLIU4wMPz6eRf.png" alt=""></p>
 ]]></content>
+      <categories>
+        <category>bug宝典</category>
+      </categories>
       <tags>
         <tag>java</tag>
-        <tag>spring</tag>
-        <tag>spring boot</tag>
+        <tag>spring-boot</tag>
+        <tag>ZeyFraのbug宝典</tag>
         <tag>idea</tag>
-        <tag>ZeyFraの宝典</tag>
         <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记02】</title>
+    <url>/2020/09/26/%E3%80%90%E9%9A%8F%E8%AE%B003%E3%80%91/</url>
+    <content><![CDATA[<ul>
+<li>再一次觉得自己好菜，啥也不会= =会的那些也称不上会，只是看了下教程写了个高级“lHelloWord”而已= = 从基础抓起吧</li>
+<li>今天想把三小的基本后端搭起来的= =没完成，折腾了一上午的EasyExcel和Poi也没整明白，后来又发现自己的某个思考方向是错的= =</li>
+<li>下午写最基本的东西都忘了，感觉自己记忆力好差，很难受，做不到一下就理解并记住难受QAQ</li>
+<li>LGD好菜= =</li>
+<li>加油吧，骚年</li>
+<li>把基础打牢</li>
+<li>有人用我的博客成功解决了他全网搜遍都解决不了的问题，开心~</li>
+</ul>
+]]></content>
+      <categories>
+        <category>个人随记</category>
+      </categories>
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
       </tags>
   </entry>
   <entry>
@@ -256,6 +600,60 @@
 <li>上了大学后我越来越不愿意去回忆任何事情，不管是什么，我都不想回忆。或许这也是我经常记不住东西的原因吧。</li>
 <li>好消息是打游戏的欲望没有好多，其实还有，但是一想到自己多么的弱小，也就索然无味了。谁还没有一科想成为主角的心呢。</li>
 <li>想变得厉害一点</li>
+</ul>
+]]></content>
+      <categories>
+        <category>个人随记</category>
+      </categories>
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【数据库01】数据的独立性</title>
+    <url>/2020/03/05/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%9301%E3%80%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%8B%AC%E7%AB%8B%E6%80%A7/</url>
+    <content><![CDATA[<p><strong>数据的独立性是数据库系统的最基本的特征之一</strong> 。数据独立性是指应用程序和数据结构之间相互独立, 互不影响。在三层模式体系结构中数据独立性是指数据库系统在某一层次模式上的改变不会使它的上一层模式也发生改变的能力。正是三级模式间的两层映像保证了数据库系统中的数据具有较高的数据独立性。 数据独立性包括数据<strong>逻辑独立性</strong>和数据<strong>物理独立性</strong>。</p>
+<h2 id="逻辑独立性">逻辑独立性</h2>
+<p><strong>用户的应用程序与数据库的逻辑结构是相互独立的</strong>。即，当数据的逻辑结构改变时，用户程序也可以不变。 有了外模式/模式映像，模式改变时，如增加新的属性、修改属性的类型，只要对外模式/模式的映像做相应的改变，可使外模式保持不变，则以外模式为依据编写的应用程序就不受影响，从而应用程序不必修改，保证了数据与程序之间的逻辑独立性，也就是逻辑数据独立性。</p>
+<h2 id="物理独立性">物理独立性</h2>
+<p><strong>用户的应用程序与存储在磁盘上的数据库中数据是相互独立的</strong>。即，数据在磁盘上怎样存储由DBMS管理，用户程序不需要了解，应用程序要处理的只是数据的逻辑结构，这样当数据的物理存储改变了，应用程序不用改变。 有了模式/内模式映像，当内模式改变时，如存储设备或存储方式有所改变，只要对模式/内模式映像做相应的改变，使模式保持不变，则应用程序就不受影响，从而保证了数据与程序之间的物理独立性，称为存储数据独立性</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>数据库</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记02】</title>
+    <url>/2020/09/23/%E3%80%90%E9%9A%8F%E8%AE%B002%E3%80%91/</url>
+    <content><![CDATA[<ul>
+<li>
+<p>很久没有更博客了，最近也不知道干嘛。前段时间断断续续的跟着小破站的视频写着前端，写的很自闭</p>
+</li>
+<li>
+<p>前几天和老段聊了下，被他点醒了下。他说我这样学再多的框架，没什么用，框架是很快过时的，如果他们老师只讲这些那么我们和培训机构出来的又有什么区别呢？想想也是，我却以为学了点会用了些框架好像就懂了很多一样，其实我们都是使用者。老段说实在的建议是考个研吧，本科生的确不好竞争，比较我不是那种拔尖突出的人。</p>
+</li>
+<li>
+<p>六级白给了，12月还有一次机会。</p>
+</li>
+<li>
+<p>总觉得每天的时间不够，却又好像没有做些什么。</p>
+</li>
+<li>
+<p>三小自己好像有点笨比，害，前后端分离，到底什么是前后端分离，只是简简单单的VUE + SpringBoot吗？我也不知道， 好像自己从不去深入了解，知道个大概就有点沾沾自喜了。我好垃圾= =</p>
+</li>
+<li>
+<p>要学的真多= =</p>
+</li>
+<li>
+<p>我好菜，有点手忙脚乱不知所措= =</p>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -311,64 +709,6 @@
         <tag>学习</tag>
         <tag>加油</tag>
         <tag>计算机考研</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随记02】</title>
-    <url>/2020/09/23/%E3%80%90%E9%9A%8F%E8%AE%B002%E3%80%91/</url>
-    <content><![CDATA[<ul>
-<li>
-<p>很久没有更博客了，最近也不知道干嘛。前段时间断断续续的跟着小破站的视频写着前端，写的很自闭</p>
-</li>
-<li>
-<p>前几天和老段聊了下，被他点醒了下。他说我这样学再多的框架，没什么用，框架是很快过时的，如果他们老师只讲这些那么我们和培训机构出来的又有什么区别呢？想想也是，我却以为学了点会用了些框架好像就懂了很多一样，其实我们都是使用者。老段说实在的建议是考个研吧，本科生的确不好竞争，比较我不是那种拔尖突出的人。</p>
-</li>
-<li>
-<p>六级白给了，12月还有一次机会。</p>
-</li>
-<li>
-<p>总觉得每天的时间不够，却又好像没有做些什么。</p>
-</li>
-<li>
-<p>三小自己好像有点笨比，害，前后端分离，到底什么是前后端分离，只是简简单单的VUE + SpringBoot吗？我也不知道， 好像自己从不去深入了解，知道个大概就有点沾沾自喜了。我好垃圾= =</p>
-</li>
-<li>
-<p>要学的真多= =</p>
-</li>
-<li>
-<p>我好菜，有点手忙脚乱不知所措= =</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>个人随记</category>
-      </categories>
-      <tags>
-        <tag>ZeyFraの随记</tag>
-        <tag>学习</tag>
-        <tag>加油</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【随记02】</title>
-    <url>/2020/09/26/%E3%80%90%E9%9A%8F%E8%AE%B003%E3%80%91/</url>
-    <content><![CDATA[<ul>
-<li>再一次觉得自己好菜，啥也不会= =会的那些也称不上会，只是看了下教程写了个高级“lHelloWord”而已= = 从基础抓起吧</li>
-<li>今天想把三小的基本后端搭起来的= =没完成，折腾了一上午的EasyExcel和Poi也没整明白，后来又发现自己的某个思考方向是错的= =</li>
-<li>下午写最基本的东西都忘了，感觉自己记忆力好差，很难受，做不到一下就理解并记住难受QAQ</li>
-<li>LGD好菜= =</li>
-<li>加油吧，骚年</li>
-<li>把基础打牢</li>
-<li>有人用我的博客成功解决了他全网搜遍都解决不了的问题，开心~</li>
-</ul>
-]]></content>
-      <categories>
-        <category>个人随记</category>
-      </categories>
-      <tags>
-        <tag>ZeyFraの随记</tag>
-        <tag>学习</tag>
-        <tag>加油</tag>
       </tags>
   </entry>
   <entry>
