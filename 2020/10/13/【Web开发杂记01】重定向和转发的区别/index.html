@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>about |  ZeyFra&#39;s Blog</title>
+      <title>【Web开发杂记01】重定向和转发的区别 |  ZeyFra&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zeyfra/zeyfra.github.io@v1.1/favicon.ico" />
@@ -58,8 +58,8 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="page-"
-  class="article article-type-page"
+  id="post-【Web开发杂记01】重定向和转发的区别"
+  class="article article-type-post"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
@@ -69,16 +69,77 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  about
+  【Web开发杂记01】重定向和转发的区别
 </h1>
  
 
       
     </header>
-       
+     
+    <div class="article-meta">
+      <a href="/2020/10/13/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B001%E3%80%91%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%BD%AC%E5%8F%91%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-10-12T16:00:00.000Z" itemprop="datePublished">2020-10-13</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">464</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <h2 id="1-啥是重定向-redirect-？啥是转发-forward-？">1、啥是重定向（Redirect）？啥是转发（Forward）？</h2>
+<p>【重定向】</p>
+<p>客户向服务器发送请求后，服务器处理完返回消息给客户端告知需再发送一次固定内容的请求，客户端便再次发送了一个请求从而跳转至新页面</p>
+<p>【转发】</p>
+<p>客户端向服务器发送请求后，服务器处理完之后把之前请求所携带的传输信息（在JavaWeb中为request和response对象）一同转发至下一个组件或网页</p>
+<h2 id="2-有什么区别？">2、有什么区别？</h2>
+<p><img src="https://s2.loli.net/2022/04/03/M39HyXlxwJg2QRY.png" alt=""></p>
+<p><strong>1、地址栏不同（表面)</strong></p>
+<ul>
+<li>转发：地址栏不变，并不会显示出所转向的地址</li>
+<li>重定向：地址栏改变，显示转向之后的地址</li>
+</ul>
+<p><strong>2、“请求 - 响应” 的次数和行为对象不同</strong></p>
+<ul>
+<li>转发：整个过程只有一次，且属于服务器的行为，由服务器区发出请求，客户端并不知晓，所以客户端游览器中是不会显示出转向的地址</li>
+<li>重定向：整个过程至少涉及两次“请求 - 响应” ，且属于客户端行为，是服务器告诉客户端需要转向特定的地址，然后客户端再自己去请求转向地址，因此是会显示出转向的地址</li>
+</ul>
+<p><strong>3、速度不同</strong></p>
+<ul>
+<li>转发：转发是在同一台服务器上完成，速度较快</li>
+<li>重定向：重定向需要经过数次客户端，在多台不同的服务器上完成，速度较慢</li>
+</ul>
+<p><strong>4、所携带的信息处理不同</strong></p>
+<ul>
+<li>转发：不会丢失所携带的信息</li>
+<li>重定向：会丢失所携带的信息</li>
+</ul>
+<h2 id="3-如何选择？">3、如何选择？</h2>
+<p>1、转发速度快</p>
+<p>2、转发只能访问当前的web应用程序，当需要访问别的web应用程序上的资源的时候便只能使用重定向</p>
+ 
       <!-- reward -->
       
       <div id="reword-out">
@@ -148,15 +209,36 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://zeyfra.top/about/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://zeyfra.top/2020/10/13/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B001%E3%80%91%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%BD%AC%E5%8F%91%E7%9A%84%E5%8C%BA%E5%88%AB/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web%E5%BC%80%E5%8F%91/" rel="tag">Web开发</a></li></ul>
+
     </footer>
   </div>
 
    
+  <nav class="article-nav">
+    
+      <a href="/2021/02/24/%E3%80%90web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B002%E3%80%91%E4%BD%BF%E7%94%A8MybatisPlus%E6%97%B6%E4%B8%8D%E8%A6%81Mybatis%E5%8E%9F%E7%94%9F%E7%9A%84SqlSessionFactory/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            【web开发杂记02】使用MybatisPlus时不要Mybatis原生的SqlSessionFactory
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/09/26/%E3%80%90%E9%9A%8F%E8%AE%B003%E3%80%91/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">【随记02】</div>
+      </a>
+    
+  </nav>
+
    
 <!-- valine评论 -->
 <div id="vcomments-box">
@@ -206,7 +288,16 @@
 </style>
 
  
+   
     
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
 </article>
 
 </section>
@@ -347,6 +438,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

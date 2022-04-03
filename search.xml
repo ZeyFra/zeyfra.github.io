@@ -1,226 +1,405 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-    
-    <entry>
-      <title>Color Themes</title>
-      <link href="/hexo-theme-freemind-blog/2016/01/30/color-themes/"/>
-      <url>/hexo-theme-freemind-blog/2016/01/30/color-themes/</url>
-      <content type="html"><![CDATA[<p>Freemind contains luxuriant color themes for your choice. To use one of them, simply modify the <code>theme</code> and <code>inverse</code> settings from your theme <code>_config.yml</code> file <em>e.g.</em></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">theme: bootstrap</div><div class="line">inverse: true</div></pre></td></tr></table></figure><p>, where <code>theme</code> here indicates which theme you are going to use, and <code>inverse</code> here says you want inverse color scheme on some important components such as navigation bar and header title.</p><p>User contributions are welcome! If you want to contribute a color theme, you can <a href="https://github.com/wzpan/hexo-theme-freemind-blog/tree/dev" target="_blank" rel="external">fork the dev branch</a> . Write a new theme in LESS and send me a pull request.</p><a id="more"></a><h2 id="bootstrap"><a href="#bootstrap" class="headerlink" title="bootstrap"></a>bootstrap</h2><h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/bootstrap.png" alt="bootstrap"></p><h3 id="inverse"><a href="#inverse" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/bootstrap-inverse.png" alt="bootstrap-inverse"></p><h2 id="cerulean"><a href="#cerulean" class="headerlink" title="cerulean"></a>cerulean</h2><h3 id="default-1"><a href="#default-1" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cerulean.png" alt="cerulean"></p><h3 id="inverse-1"><a href="#inverse-1" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cerulean-inverse.png" alt="cerulean-inverse"></p><h2 id="cosmo"><a href="#cosmo" class="headerlink" title="cosmo"></a>cosmo</h2><h3 id="default-2"><a href="#default-2" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cosmo.png" alt="cosmo"></p><h3 id="inverse-2"><a href="#inverse-2" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cosmo-inverse.png" alt="cosmo-inverse"></p><h2 id="cyborg"><a href="#cyborg" class="headerlink" title="cyborg"></a>cyborg</h2><h3 id="default-3"><a href="#default-3" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cyborg.png" alt="cyborg"></p><h3 id="inverse-3"><a href="#inverse-3" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/cyborg-inverse.png" alt="cyborg-inverse"></p><h2 id="darkly"><a href="#darkly" class="headerlink" title="darkly"></a>darkly</h2><h3 id="default-4"><a href="#default-4" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/darkly.png" alt="darkly"></p><h3 id="inverse-4"><a href="#inverse-4" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/darkly-inverse.png" alt="darkly-inverse"></p><h2 id="flatly"><a href="#flatly" class="headerlink" title="flatly"></a>flatly</h2><h3 id="default-5"><a href="#default-5" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/flatly.png" alt="flatly"></p><h3 id="inverse-5"><a href="#inverse-5" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/flatly-inverse.png" alt="flatly"></p><h2 id="journal"><a href="#journal" class="headerlink" title="journal"></a>journal</h2><h3 id="default-6"><a href="#default-6" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/journal.png" alt="journal"></p><h3 id="inverse-6"><a href="#inverse-6" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/journal-inverse.png" alt="journal-inverse"></p><h2 id="lumen"><a href="#lumen" class="headerlink" title="lumen"></a>lumen</h2><h3 id="default-7"><a href="#default-7" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/lumen.png" alt="lumen"></p><h3 id="inverse-7"><a href="#inverse-7" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/lumen-inverse.png" alt="lumen-inverse"></p><h2 id="paper"><a href="#paper" class="headerlink" title="paper"></a>paper</h2><h3 id="default-8"><a href="#default-8" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/paper.png" alt="paper"></p><h3 id="inverse-8"><a href="#inverse-8" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/paper-inverse.png" alt="paper-inverse"></p><h2 id="readable"><a href="#readable" class="headerlink" title="readable"></a>readable</h2><h3 id="default-9"><a href="#default-9" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/readable.png" alt="readable"></p><h3 id="inverse-9"><a href="#inverse-9" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/readable-inverse.png" alt="readable-inverse"></p><h2 id="sandstone"><a href="#sandstone" class="headerlink" title="sandstone"></a>sandstone</h2><h3 id="default-10"><a href="#default-10" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/sandstone.png" alt="sandstone"></p><h3 id="inverse-10"><a href="#inverse-10" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/sandstone-inverse.png" alt="sandstone-inverse"></p><h2 id="simplex"><a href="#simplex" class="headerlink" title="simplex"></a>simplex</h2><h3 id="default-11"><a href="#default-11" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/simplex.png" alt="simplex"></p><h3 id="inverse-11"><a href="#inverse-11" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/simplex-inverse.png" alt="simplex-inverse"></p><h2 id="slate"><a href="#slate" class="headerlink" title="slate"></a>slate</h2><h3 id="default-12"><a href="#default-12" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/slate.png" alt="slate"></p><h3 id="inverse-12"><a href="#inverse-12" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/slate-inverse.png" alt="slate-inverse"></p><h2 id="spacelab"><a href="#spacelab" class="headerlink" title="spacelab"></a>spacelab</h2><h3 id="default-13"><a href="#default-13" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/spacelab.png" alt="spacelab"></p><h3 id="inverse-13"><a href="#inverse-13" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/spacelab-inverse.png" alt="spacelab-inverse"></p><h2 id="superhero"><a href="#superhero" class="headerlink" title="superhero"></a>superhero</h2><h3 id="default-14"><a href="#default-14" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/superhero.png" alt="superhero"></p><h3 id="inverse-14"><a href="#inverse-14" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/superhero-inverse.png" alt="superhero-inverse"></p><h2 id="united"><a href="#united" class="headerlink" title="united"></a>united</h2><h3 id="default-15"><a href="#default-15" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/united.png" alt="united"></p><h3 id="inverse-15"><a href="#inverse-15" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/united-inverse.png" alt="united-inverse"></p><h2 id="yeti"><a href="#yeti" class="headerlink" title="yeti"></a>yeti</h2><h3 id="default-16"><a href="#default-16" class="headerlink" title="default"></a>default</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/yeti.png" alt="yeti"></p><h3 id="inverse-16"><a href="#inverse-16" class="headerlink" title="inverse"></a>inverse</h3><p><img src="/hexo-theme-freemind-blog/images/color-themes/yeti-inverse.png" alt="yeti-inverse"></p>]]></content>
-      
+<search>
+  <entry>
+    <title>【Java杂记 01】关于序列化和Serializable（序列化）接口</title>
+    <url>/2020/07/04/%E3%80%90Java%E6%9D%82%E8%AE%B0%2001%E3%80%91%E5%85%B3%E4%BA%8E%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8CSerializable%EF%BC%88%E5%BA%8F%E5%88%97%E5%8C%96%EF%BC%89%E6%8E%A5%E5%8F%A3/</url>
+    <content><![CDATA[<h1>什么是序列化？</h1>
+<blockquote>
+<p>把原本<strong>在内存中的对象状态</strong>变成<strong>可存储或传输的过程</strong>称之为<strong>序列化</strong>。</p>
+<p>序列化之后，就可以把序列化后的内容写入磁盘，或者通过网络传输到别的机器上。</p>
+<p>序列化前的对象和反序列化后得到的对象，内容一样(且对象中包含的引用相同)，但两个对象地址不同。</p>
+<p>换句话说，序列化操作可以实现对任何可Serializable对象的<strong>深度复制(deep copy)</strong>。</p>
+</blockquote>
+<h1>何时需要序列化？</h1>
+<p>  1. 当你想把的内存中的对象状态<strong>保存到一个文件中或者数据库中</strong>，以便可以在以后重新创建精确的副本</p>
+<p>  2. 当你想用**套接字(socket编程)**在网络上传送对象的时候(从一个应用程序域发送到另一个应用程序域中)；</p>
+<p>  3. 当你想通过<strong>RMI传输对象</strong>的时候</p>
+<h1>怎么序列化？</h1>
+<blockquote>
+<p>注意以下几点：</p>
+<ol>
+<li>序列化时，只对对象的状态进行保存，而不管对象的方法</li>
+<li>当一个父类实现序列化，子类自动实现序列化，不需要显式实现Serializable接口</li>
+<li>当一个对象的实例变量引用其他对象，序列化该对象时也把引用对象进行序列化</li>
+<li>并非所有的对象都可以序列化</li>
+<li>序列化会忽略静态变量，即序列化不保存静态变量的状态。静态成员属于类级别的，不能序列化。添加了static、transient关键字后的变量不能序列化</li>
+</ol>
+</blockquote>
+<p><strong>Serializable是标识接口，没有任何需要实现的方法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. 实现Serializable接口</span><br><span class="line">2. 创建FileOutputStream（输出流）对象fos</span><br><span class="line">3. 通过输出流对象fos创建一个对象输出流</span><br></pre></td></tr></table></figure>
+<p>将参数为obj的对象写出(即保存其状态)，要恢复的话则用输入流</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">	<span class="type">Person</span> <span class="variable">person</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">	    <span class="comment">//序列化</span></span><br><span class="line">		System.out.println(person);</span><br><span class="line">        ObjectOutputStream oos= <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;data.txt&quot;</span>));</span><br><span class="line">        oos.writeObject(person);	<span class="comment">//通过对象输出流，将label写入流中</span></span><br><span class="line">        oos.close();</span><br><span class="line">        <span class="comment">//反序列化</span></span><br><span class="line">        ObjectInputStream ois= <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;person.txt&quot;</span>));</span><br><span class="line">        person = (Person ) ois.readObject();</span><br><span class="line">        ois.close();</span><br><span class="line">        System.out.println(person);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
-          
-          <category> Docs </category>
-          
+        <category>Java</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> themes </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>helloworld</title>
-      <link href="/2022/04/02/hello-world/"/>
-      <url>/2022/04/02/hello-world/</url>
-      <content type="html"><![CDATA[<span class="label label-danger">Q</span> What does <code>Freemind</code> stands for?<br><br><span class="label label-success">A</span> <code>Freemind</code> is named after <a href="http://freemind.pluskid.org/" target="_blank" rel="external">Pluskid’s blog</a>. This theme is greatly inspired by his blog layouts and stylesheets.<br><br><span class="label label-danger">Q</span> There’re already so many themes for Hexo. Why create this one?<br><br><span class="label label-success">A</span> In fact I created this theme before I turned to use Hexo. I switched to Hexo about half an year ago, including my theme, since I have already got used to it and don’t wanna change it for now.<br><br><a id="more"></a><p><span class="label label-danger">Q</span> Why use raw CSS stylesheets instead of more fashionable stylus?</p><p><span class="label label-success">A</span> Yes, stylus is cool. But I don’t want to wrote my stylesheets again in stylus. So let’s just keep them.</p><p><span class="label label-danger">Q</span> I love your theme. How to contribute?</p><p><span class="label label-success">A</span> Great that you love it. To devote your contribution, you can:</p><ul><li>Star its <a href="https://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Github project</a>;</li><li>Fork this project, make your change, and then send me your pull request;</li><li>Since it is public under MIT license, you can make your own theme based on mine. But it will be nicer if you claimed that your work is based on mine in your theme project page.</li></ul><p><span class="label label-danger">Q</span> <a href="http://hahack.com" target="_blank" rel="external">Your blog</a> looks a little different to this theme. Why such difference?</p><p><span class="label label-success">A</span> Yes. I modified the theme a little bit as I open sourced this theme. I actually did some simplification <em>e.g.</em> I removed the whole <a href="http://hahack.com/wiki" target="_blank" rel="external">Wiki</a> page because I don’t think that everybody need this.</p><p><span class="label label-danger">Q</span> How to generate ToC(Table of Contents) in a certain page?</p><p><span class="label label-success">A</span> Add <code>toc: true</code> in the <a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">front-matter</a>.</p><p><span class="label label-danger">Q</span> Where can I find your markdown source files of these docs?</p><p><span class="label label-success">A</span> From the <a href="https://github.com/wzpan/hexo-theme-freemind-blog" target="_blank" rel="external">source repo</a> of this site.</p>]]></content>
-      
+      <tags>
+        <tag>数据库</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Web开发杂记01】重定向和转发的区别</title>
+    <url>/2020/10/13/%E3%80%90Web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B001%E3%80%91%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%BD%AC%E5%8F%91%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h2 id="1-啥是重定向-redirect-？啥是转发-forward-？">1、啥是重定向（Redirect）？啥是转发（Forward）？</h2>
+<p>【重定向】</p>
+<p>客户向服务器发送请求后，服务器处理完返回消息给客户端告知需再发送一次固定内容的请求，客户端便再次发送了一个请求从而跳转至新页面</p>
+<p>【转发】</p>
+<p>客户端向服务器发送请求后，服务器处理完之后把之前请求所携带的传输信息（在JavaWeb中为request和response对象）一同转发至下一个组件或网页</p>
+<h2 id="2-有什么区别？">2、有什么区别？</h2>
+<p><img src="https://s2.loli.net/2022/04/03/M39HyXlxwJg2QRY.png" alt=""></p>
+<p><strong>1、地址栏不同（表面)</strong></p>
+<ul>
+<li>转发：地址栏不变，并不会显示出所转向的地址</li>
+<li>重定向：地址栏改变，显示转向之后的地址</li>
+</ul>
+<p><strong>2、“请求 - 响应” 的次数和行为对象不同</strong></p>
+<ul>
+<li>转发：整个过程只有一次，且属于服务器的行为，由服务器区发出请求，客户端并不知晓，所以客户端游览器中是不会显示出转向的地址</li>
+<li>重定向：整个过程至少涉及两次“请求 - 响应” ，且属于客户端行为，是服务器告诉客户端需要转向特定的地址，然后客户端再自己去请求转向地址，因此是会显示出转向的地址</li>
+</ul>
+<p><strong>3、速度不同</strong></p>
+<ul>
+<li>转发：转发是在同一台服务器上完成，速度较快</li>
+<li>重定向：重定向需要经过数次客户端，在多台不同的服务器上完成，速度较慢</li>
+</ul>
+<p><strong>4、所携带的信息处理不同</strong></p>
+<ul>
+<li>转发：不会丢失所携带的信息</li>
+<li>重定向：会丢失所携带的信息</li>
+</ul>
+<h2 id="3-如何选择？">3、如何选择？</h2>
+<p>1、转发速度快</p>
+<p>2、转发只能访问当前的web应用程序，当需要访问别的web应用程序上的资源的时候便只能使用重定向</p>
+]]></content>
+      <tags>
+        <tag>Web开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【bug宝典01-Idea&amp;Spring】关于Intellij IDEA Spring configuration check</title>
+    <url>/2020/07/03/%E3%80%90bug%E5%AE%9D%E5%85%B801-Idea&amp;Spring%E3%80%91%E5%85%B3%E4%BA%8EIntellij%20IDEA%20Spring%20configuration%20check/</url>
+    <content><![CDATA[<p><img src="https://s2.loli.net/2022/04/03/BHE9oRYvZ3O1Dey.png" alt=""></p>
+<p>这个提示不影响工程正常运行，原因是项目工程中的spring配置文件没有被IDEA所管理，解决这个问题很简单，只需要2步操作即可：</p>
+<ul>
+<li><strong>Ctrl+Shift+Alt+S</strong></li>
+<li><strong>设置添加没有被映射的Spring配置文件，点击应用，确定即可</strong> <img src="https://s2.loli.net/2022/04/03/WxQAvG9YNdn2mH8.png" alt=""></li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> Docs </category>
-          
+        <category>bug宝典</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Q&amp;A </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Questions and Answers（中文）</title>
-      <link href="/hexo-theme-freemind-blog/2014/03/16/qna-cn/"/>
-      <url>/hexo-theme-freemind-blog/2014/03/16/qna-cn/</url>
-      <content type="html"><![CDATA[<span class="label label-danger">Q</span> <code>Freemind</code> 这名字有何含义？<br><br><span class="label label-success">A</span> <code>Freemind</code> 命名出自 <a href="http://freemind.pluskid.org/" target="_blank" rel="external">Pluskid</a> 的博客。这个主题很大程度借鉴了他的博客的布局和样式。<br><br><span class="label label-danger">Q</span> 现在都有这么多 Hexo 的主题了，为啥又要写一个？<br><br><span class="label label-success">A</span> 实际上我这个主题在我使用 Hexo 前已经创建了。我在半年前将博客迁移到 Hexo ，因为我已经习惯了原来的主题，所以顺便把主题也移植了过来。<br><br><a id="more"></a><p><span class="label label-danger">Q</span> 为啥还用 CSS 写样式，而不用更高端大气的 stylus ？</p><p><span class="label label-success">A</span> 嗯，stylus 的确很酷。不过我不想再把以前的样式重写成 stylus 了。所以暂时先保留原来的 CSS。</p><p><span class="label label-danger">Q</span> 你的博客不错用，如何贡献？</p><p><span class="label label-success">A</span> 有人喜欢我的东西我就很高兴咯。如果想做出贡献，你可以：</p><ul><li>为本主题的 <a href="https://github.com/wzpan/hexo-theme-freemind" target="_blank" rel="external">Github 项目</a> 加颗星；</li><li>Fork 这个项目，尽情DIY，然后给我发 pull request;</li><li>这个项目遵循 MIT 开源协议，你可以在本主题基础上创建你的主题。不过如果你能在你的主题页面中声明主题基于 Freemind 就再好不过了。</li></ul><p><span class="label label-danger">Q</span> <a href="http://hahack.com" target="_blank" rel="external">你自己的博客</a> 看起来跟这个主题有点不一样呀，为什么？</p><p><span class="label label-success">A</span> 是的。我在开源这个主题前做了些简化。不是所有人都需要我的博客里的一些特性，比如 <a href="http://hahack.com/wiki" target="_blank" rel="external">Wiki</a> 页面。</p><p><span class="label label-danger">Q</span> 如何指定某些页面生成 ToC(Table of Contents) ？</p><p><span class="label label-success">A</span> 在<a href="https://github.com/wzpan/hexo-theme-freemind#front-matter" target="_blank" rel="external">文章头部</a>添加 <code>toc: true</code> 。</p><p><span class="label label-danger">Q</span> 从哪里可以找到你的这几篇文档的 Markdown 源码？</p><p><span class="label label-success">A</span> 在本站点的 <a href="https://github.com/wzpan/hexo-theme-freemind-blog" target="_blank" rel="external">源码仓库</a> 。</p>]]></content>
-      
+      <tags>
+        <tag>java</tag>
+        <tag>ZeyFraのbug宝典</tag>
+        <tag>spring</tag>
+        <tag>spring boot</tag>
+        <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【bug宝典03-Idea&amp;Maven】(全网最全)关于解决IDEA Auto build completed with errors 报错</title>
+    <url>/2020/09/23/%E3%80%90bug%E5%AE%9D%E5%85%B803-Idea&amp;Maven%E3%80%91(%E5%85%A8%E7%BD%91%E6%9C%80%E5%85%A8)%E5%85%B3%E4%BA%8E%E8%A7%A3%E5%86%B3IDEA%20Auto%20build%20completed%20with%20errors%20%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<blockquote>
+<p>2022-04-03 这篇文章是我的csdn最猛的，哈哈，当然我也搜集了很久，希望可以帮到你</p>
+</blockquote>
+<h2 id="问题描述">【问题描述】</h2>
+<p>ZeyFra在写代码的时候是有强迫症的。 最近遇到一个玄幻问题，idea自动编译出错，点进problems进去还是什么java找不到符号找不到我的各种包？ <img src="https://s2.loli.net/2022/04/03/c8hHDaCLpos6J1l.png" alt=""></p>
+<p>疑惑= = <img src="https://s2.loli.net/2022/04/03/34hBuGCdpOLKgIj.jpg" alt=""></p>
+<p>我他喵pom.xml引入全了你给我找不到？我点进去当然能看到他那所谓找不到的jar包</p>
+<h2 id="解决">【解决】</h2>
+<h3 id="1-网上最多的方法">1、网上最多的方法</h3>
+<p>mvn指令clean一下（反正对我没有一点用） <img src="https://s2.loli.net/2022/04/03/Zh9z7MaspJcIR1T.png" alt=""></p>
+<h3 id="2-idea版本与maven版本不兼容">2、Idea版本与Maven版本不兼容</h3>
+<p>我网上所查到的资料：2019.1的只兼容3.5.x版本的maven 俺的2020.1用的3.5.4，好像没我的事</p>
+<h3 id="3-模块与项目的java版本不一致-我还没那么笨">3、模块与项目的Java版本不一致= =（我还没那么笨）</h3>
+<p><img src="https://s2.loli.net/2022/04/03/XM2W68Y3TIcnUgR.png" alt=""></p>
+<p><img src="https://s2.loli.net/2022/04/03/RPASLlhs68BckgG.png" alt=""></p>
+<h3 id="4-编译器与项目的jdk版本不一致-我也没那么笨-编译器早就设置好了">4、编译器与项目的JDK版本不一致（我也没那么笨，编译器早就设置好了）</h3>
+<p><img src="https://s2.loli.net/2022/04/03/RA2D3ivJ4GZgCpO.png" alt=""></p>
+<h3 id="5-把ide的build-run操作委托给maven来进行-让两者统一-也就意味着ide和maven始终使用相同的classpath进行编译等-对我还是没用-使用idea2020的兄弟们这里就要注意了">5、把IDE的Build/Run操作委托给Maven来进行，让两者统一，也就意味着IDE和Maven始终使用相同的classpath进行编译等（= =对我还是没用），使用Idea2020的兄弟们这里就要注意了</h3>
+<p><img src="https://s2.loli.net/2022/04/03/uLtHRXdA7OiNYS4.png" alt=""></p>
+<h3 id="6-在terminal中执行mvn-idea-model-成功解决">6、在Terminal中执行mvn idea:model（成功解决）</h3>
+<p>貌似是将资源全部打包至项目目录下 <img src="https://s2.loli.net/2022/04/03/hRp4fFz7IKxnbsk.png" alt=""></p>
+<blockquote>
+<p>2022-04-03 补充</p>
+<p>上述命令其实是为了生成iml文件，我也不知道为啥这就ok了</p>
+<p>不行的兄弟可以试试<code>mvn ideal:idea</code>，这是生成 IntelliJ IDEA 项目设置所需的文件</p>
+<p>最后送上maven命令官方说明链接：<a href="https://maven.apache.org/plugins/maven-idea-plugin/usage.html">https://maven.apache.org/plugins/maven-idea-plugin/usage.html</a></p>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> Docs </category>
-          
+        <category>bug宝典</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Q&amp;A </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Tag Plugins</title>
-      <link href="/hexo-theme-freemind-blog/2014/03/16/tag-plugins/"/>
-      <url>/hexo-theme-freemind-blog/2014/03/16/tag-plugins/</url>
-      <content type="html"><![CDATA[<p>The freemind theme offers several new tag plugins, so as to fully take advantages of Bootstrap.</p><p>To use these tag plugins, you need to install <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> first. In your blog root folder, execute the following command:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-tag-bootstrap --save</div></pre></td></tr></table></figure><p>Then you can use these tag plugins in your blog, as easily as you normally do using hexo tag plugins. </p><a id="more"></a><h2 id="Text-Color"><a href="#Text-Color" class="headerlink" title="Text Color"></a>Text Color</h2><p>Convey meaning through color with a handful of emphasis utility classes. These may also be applied to links and will darken on hover just like our default link styles.</p><h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor [style] %&#125;</div><div class="line">  text string</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor muted %&#125;</div><div class="line">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor primary %&#125;</div><div class="line">Nullam id dolor id nibh ultricies vehicula ut id elit.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor success %&#125;</div><div class="line">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor info %&#125;</div><div class="line">Maecenas sed diam eget risus varius blandit sit amet non magna.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor warning %&#125;</div><div class="line">Etiam porta sem malesuada magna mollis euismod.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor danger %&#125;</div><div class="line">Donec ullamcorper nulla non metus auctor fringilla.</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h3><p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p><p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p><p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p><p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p><h2 id="Buttons"><a href="#Buttons" class="headerlink" title="Buttons"></a>Buttons</h2><p>Inserts a button with target links, text and specified color.</p><h3 id="Syntax-1"><a href="#Syntax-1" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% btn url text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% btn http://hahack.com hahack %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack primary %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack success %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack warning %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack danger %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack info %&#125;</div></pre></td></tr></table></figure><h3 id="Results-1"><a href="#Results-1" class="headerlink" title="Results"></a>Results</h3><a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a><h2 id="Labels"><a href="#Labels" class="headerlink" title="Labels"></a>Labels</h2><p>Inserts a label with text and specified color.</p><h3 id="Syntax-2"><a href="#Syntax-2" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% label text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% label default %&#125;</div><div class="line"></div><div class="line">&#123;% label warinng warning %&#125;</div><div class="line"></div><div class="line">&#123;% label success success %&#125;</div><div class="line"></div><div class="line">&#123;% label danger danger %&#125;</div><div class="line"></div><div class="line">&#123;% label primary primary %&#125;</div><div class="line"></div><div class="line">&#123;% label info info %&#125;</div></pre></td></tr></table></figure><h3 id="Results-2"><a href="#Results-2" class="headerlink" title="Results"></a>Results</h3><span class="label label-default">default</span><span class="label label-warning">warinng</span><span class="label label-success">success</span><span class="label label-danger">danger</span><span class="label label-primary">primary</span><span class="label label-info">info</span><h2 id="Badges"><a href="#Badges" class="headerlink" title="Badges"></a>Badges</h2><p>Inserts a badge with text.</p><h3 id="Syntax-3"><a href="#Syntax-3" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge text %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-3"><a href="#Examples-3" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge 42 %&#125;</div></pre></td></tr></table></figure><h3 id="Results-3"><a href="#Results-3" class="headerlink" title="Results"></a>Results</h3><span class="badge">42</span><h2 id="Alerts"><a href="#Alerts" class="headerlink" title="Alerts"></a>Alerts</h2><p>Inserts alert messages with text and specified color.</p><h3 id="Syntax-4"><a href="#Syntax-4" class="headerlink" title="Syntax"></a>Syntax</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% alert [style] %&#125;</div><div class="line">   Alert string</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="Examples-4"><a href="#Examples-4" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;% alert warning %&#125;</div><div class="line">Best check yo self, you&apos;re not looking too good.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert danger %&#125;</div><div class="line">Change a few things up and try submitting again.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert success %&#125;</div><div class="line">You successfully read this important alert message.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert info %&#125;</div><div class="line">This alert needs your attention, but it&apos;s not super important.</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="Results-4"><a href="#Results-4" class="headerlink" title="Results"></a>Results</h3><div class="alert alert-warning"><i class="fa fa-bell"></i>  Best check yo self, you're not looking too good.</div><div class="alert alert-danger"><i class="fa fa-bug"></i>  Change a few things up and try submitting again.</div><div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  You successfully read this important alert message.</div><div class="alert alert-info"><i class="fa fa-info"></i>  This alert needs your attention, but it's not super important.</div>]]></content>
-      
+      <tags>
+        <tag>java</tag>
+        <tag>ZeyFraのbug宝典</tag>
+        <tag>spring boot</tag>
+        <tag>idea</tag>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【web开发杂记02】使用MybatisPlus时不要Mybatis原生的SqlSessionFactory</title>
+    <url>/2021/02/24/%E3%80%90web%E5%BC%80%E5%8F%91%E6%9D%82%E8%AE%B002%E3%80%91%E4%BD%BF%E7%94%A8MybatisPlus%E6%97%B6%E4%B8%8D%E8%A6%81Mybatis%E5%8E%9F%E7%94%9F%E7%9A%84SqlSessionFactory/</url>
+    <content><![CDATA[<h2 id="不要使用mybatis原生的sqlsessionfactory-而应使用mybatissqlsessionfactory">不要使用Mybatis原生的SqlSessionFactory，而应使用MybatisSqlSessionFactory。</h2>
+<ol>
+<li>依赖关系如下 因此会在使用Mybaits-Plus时默认的时Mybatis原生的SqlSessionFactory</li>
+<li>因为MybatisPlus中自定义了MybatisSqlSessionFactoryBean这个类，而这个类是实现了FactoryBean<SqlSessionFactory>, InitializingBean, ApplicationListener<ApplicationEvent>这些接口，而在Mybatis中有一个SqlSessionFactoryBean类也实现了这些接口，所以在MybatisPlus的配置文件中配置SqlSessionFactoryBean时需要换成MybatisPlus中自定义的这个类MyBatisSqlSessionFactoryBean，否则使用原生的SqlSessionFactoryBean会产生很多问题，这也是官方文档出现-invalid-bound-statement-not-found-异常中的最后第4点特别说明并推荐的</li>
+</ol>
+<p>相应的配置类如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.annotation.DbType;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.MybatisConfiguration;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.core.config.GlobalConfig;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;</span><br><span class="line"><span class="keyword">import</span> com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Qualifier;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Primary;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.support.PathMatchingResourcePatternResolver;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.EnableTransactionManagement;</span><br><span class="line"><span class="keyword">import</span> zeyfra.com.aspect.mybatis_plus.MyMetaObjectHandler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MyBatis-Plus配置类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZeyFra</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021/2/14 13:27</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;zeyfra.com.modules.**.mapper&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisPlusConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean(&quot;sqlSessionFactory&quot;)</span></span><br><span class="line">    <span class="meta">@Primary</span></span><br><span class="line">    <span class="keyword">public</span> SqlSessionFactory <span class="title function_">sqlSessionFactory</span><span class="params">(<span class="meta">@Autowired</span> <span class="meta">@Qualifier(&quot;dataSource&quot;)</span> DataSource dataSource)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 未使用MyBatis-Plus的分页插件的小伙伴可忽略此部分</span></span><br><span class="line">        <span class="comment">// MybatisPlus内部拦截器</span></span><br><span class="line">        <span class="comment">// 为自动分页插件设置DB类型</span></span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">mybatisPlusInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();</span><br><span class="line">        mybatisPlusInterceptor.addInnerInterceptor(<span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>(DbType.MYSQL));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 可添加自定义拦截器，没有自定义拦截器的小伙伴可忽略此部分</span></span><br><span class="line">        <span class="comment">// MybatisConfiguration</span></span><br><span class="line">        <span class="type">MybatisConfiguration</span> <span class="variable">mybatisConfiguration</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisConfiguration</span>();</span><br><span class="line">        mybatisConfiguration.addInterceptor(mybatisPlusInterceptor);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开启缓存，可自行选择</span></span><br><span class="line">        mybatisConfiguration.setCacheEnabled(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 使用MybatisSqlSessionFactoryBean</span></span><br><span class="line">        <span class="type">MybatisSqlSessionFactoryBean</span> <span class="variable">sqlSessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisSqlSessionFactoryBean</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置数据源</span></span><br><span class="line">        sqlSessionFactoryBean.setDataSource(dataSource);</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 添加MybatisConfiguration</span></span><br><span class="line">        sqlSessionFactoryBean.setConfiguration(mybatisConfiguration);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置mapper相应的xml路径</span></span><br><span class="line">        sqlSessionFactoryBean.setMapperLocations(<span class="keyword">new</span> <span class="title class_">PathMatchingResourcePatternResolver</span>()</span><br><span class="line">                .getResources(<span class="string">&quot;classpath:zeyfra/com/modules/**/*.xml&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 返回MybatisSqlSessionFactoryBean从而替代原生的sqlSessionFactory</span></span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactoryBean.getObject();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注意：">注意：</h2>
+<p><strong>1、使用MybatisSqlSessionFactory之后配置应重新在此注入相应的拦截器</strong></p>
+<p><strong>2、在3.4.0版本过后已弃用PaginationInterceptor，应使用MybatisPlusInterceptor添加自动分页插件PaginationInnerInterceptor</strong></p>
+<p><strong>3、应在自动分页插件设置DB类型，否则容易出现分页查询后total为0的问题</strong></p>
+<p><strong>4、pageHelper依赖会与自动分页插件产生冲突，也会出现分页查询后total为0的问题</strong></p>
+]]></content>
+      <tags>
+        <tag>spring boot</tag>
+        <tag>MyBatisPlus</tag>
+        <tag>mybatis</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【bug宝典02-Idea&amp;Tomcat】解决Idea利用Tomcat部署web应用控制台Tomcat日志中文乱码</title>
+    <url>/2020/07/10/%E3%80%90bug%E5%AE%9D%E5%85%B802-Idea&amp;Tomcat%E3%80%91%E8%A7%A3%E5%86%B3Idea%E5%88%A9%E7%94%A8Tomcat%E9%83%A8%E7%BD%B2web%E5%BA%94%E7%94%A8%E6%8E%A7%E5%88%B6%E5%8F%B0Tomcat%E6%97%A5%E5%BF%97%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/</url>
+    <content><![CDATA[<h2 id="问题描述">【问题描述】</h2>
+<p>在IDEA中基于Tomcat部署web应用时，控制台中输出的tomcat日志信息中文乱码</p>
+<h2 id="解决-注意">【解决&amp;注意】</h2>
+<blockquote>
+<p><strong>看了网上大部分解决方案，基本都有如下步骤</strong></p>
+</blockquote>
+<ul>
+<li>要么添加Tomcat的启动参数：-Dfile.encoding=UTF-8</li>
+<li>要么找IDEA安装目录的bin目录下的虚拟机配置文件进行修改虚拟机编码格式</li>
+<li>要么修改tomcat目录下的日志的配置文件的，将控制控制台输出编码格式改成GBK</li>
+</ul>
+<blockquote>
+<p><strong>大家不要盲目的区跟着网上乱改</strong></p>
+</blockquote>
+<ul>
+<li>首先你要搞清楚，到底是Tomcat的日志编码问题还是IDEA的日志显示控制台编码问题</li>
+<li>不要自己改IDEA安装目录的bin目录下的.vmoptions文件，一般位置不对，IDEA通常会在用户目录下复制一个</li>
+<li>不要改Tomcat安装路径conf目录下的logging.properties编码为GBK，这会导致调试时get/post参数乱码</li>
+<li>一般来说都是后者（前提是你的IDEA的Setting中，文件的编码格式均为UTF-8）：</li>
+</ul>
+<p><strong>添加Tomcat的启动参数：</strong></p>
+<p><img src="https://s2.loli.net/2022/04/03/tgbmzdB2WEDRxjn.png" alt=""></p>
+<p><strong>在IDEA中，点击上方Help中的Edit Custom VM Options，添加编码格式再重启IDEA即可：</strong></p>
+<p><img src="https://s2.loli.net/2022/04/03/7jykK6olW4v5xrm.png" alt=""><img src="https://s2.loli.net/2022/04/03/wXLubNMWaKr6UBT.png" alt=""></p>
+]]></content>
       <categories>
-          
-          <category> Docs </category>
-          
+        <category>bug宝典</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> plugins </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Tag Plugins（中文）</title>
-      <link href="/hexo-theme-freemind-blog/2014/03/16/tag-plugins-cn/"/>
-      <url>/hexo-theme-freemind-blog/2014/03/16/tag-plugins-cn/</url>
-      <content type="html"><![CDATA[<p>Freemind 主题提供了丰富的 tag plugins，以充分利用 Bootstrap 的威力。</p><p>在使用这些 tag plugins 之前，你需要先安装 <a href="https://github.com/wzpan/hexo-tag-bootstrap" target="_blank" rel="external">hexo-tag-bootstrap</a> 。在你的 Hexo 博客目录，执行下列命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-tag-bootstrap --save</div></pre></td></tr></table></figure><p>然后就可以像使用其他 hexo tag plugins 一样使用这些 Bootstrap tag plugins 了。</p><a id="more"></a><h2 id="文本颜色"><a href="#文本颜色" class="headerlink" title="文本颜色"></a>文本颜色</h2><p>插入一段文本，并用特殊的颜色高亮它。</p><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor [style] %&#125;</div><div class="line">  text string</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;% textcolor muted %&#125;</div><div class="line">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor primary %&#125;</div><div class="line">Nullam id dolor id nibh ultricies vehicula ut id elit.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor success %&#125;</div><div class="line">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor info %&#125;</div><div class="line">Maecenas sed diam eget risus varius blandit sit amet non magna.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor warning %&#125;</div><div class="line">Etiam porta sem malesuada magna mollis euismod.</div><div class="line">&#123;% endtextcolor %&#125;</div><div class="line"></div><div class="line">&#123;% textcolor danger %&#125;</div><div class="line">Donec ullamcorper nulla non metus auctor fringilla.</div><div class="line">&#123;% endtextcolor %&#125;</div></pre></td></tr></table></figure><h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p><p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p><p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p><p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p><p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p><p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p><h2 id="按钮（Buttons）"><a href="#按钮（Buttons）" class="headerlink" title="按钮（Buttons）"></a>按钮（Buttons）</h2><p>插入一个按钮，按钮可以带有链接、文本，并可以指定样式。</p><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% btn url text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% btn http://hahack.com hahack %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack primary %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack success %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack warning %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack danger %&#125;</div><div class="line"></div><div class="line">&#123;% btn http://hahack.com hahack info %&#125;</div></pre></td></tr></table></figure><h3 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h3><a class="btn btn-default" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-primary" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-success" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-warning" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-danger" href="http://hahack.com" target="_blank" rel="external">hahack</a><a class="btn btn-info" href="http://hahack.com" target="_blank" rel="external">hahack</a><h2 id="标签（Labels）"><a href="#标签（Labels）" class="headerlink" title="标签（Labels）"></a>标签（Labels）</h2><p>插入一个标签，并为其指定文本和样式。</p><h3 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% label text [style] %&#125;</div></pre></td></tr></table></figure><h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;% label default %&#125;</div><div class="line"></div><div class="line">&#123;% label warinng warning %&#125;</div><div class="line"></div><div class="line">&#123;% label success success %&#125;</div><div class="line"></div><div class="line">&#123;% label danger danger %&#125;</div><div class="line"></div><div class="line">&#123;% label primary primary %&#125;</div><div class="line"></div><div class="line">&#123;% label info info %&#125;</div></pre></td></tr></table></figure><h3 id="结果-2"><a href="#结果-2" class="headerlink" title="结果"></a>结果</h3><span class="label label-default">default</span><span class="label label-warning">warinng</span><span class="label label-success">success</span><span class="label label-danger">danger</span><span class="label label-primary">primary</span><span class="label label-info">info</span><h2 id="徽章（Badges）"><a href="#徽章（Badges）" class="headerlink" title="徽章（Badges）"></a>徽章（Badges）</h2><p>插入一个徽章，并为其指定文本。</p><h3 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge text %&#125;</div></pre></td></tr></table></figure><h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% badge 42 %&#125;</div></pre></td></tr></table></figure><h3 id="结果-3"><a href="#结果-3" class="headerlink" title="结果"></a>结果</h3><span class="badge">42</span><h2 id="警报（Alerts）"><a href="#警报（Alerts）" class="headerlink" title="警报（Alerts）"></a>警报（Alerts）</h2><p>插入一段警报文本信息，并为其指定样式。</p><h3 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% alert [style] %&#125;</div><div class="line">   Alert string</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;% alert warning %&#125;</div><div class="line">Best check yo self, you&apos;re not looking too good.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert danger %&#125;</div><div class="line">Change a few things up and try submitting again.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert success %&#125;</div><div class="line">You successfully read this important alert message.</div><div class="line">&#123;% endalert %&#125;</div><div class="line"></div><div class="line">&#123;% alert info %&#125;</div><div class="line">This alert needs your attention, but it&apos;s not super important.</div><div class="line">&#123;% endalert %&#125;</div></pre></td></tr></table></figure><h3 id="结果-4"><a href="#结果-4" class="headerlink" title="结果"></a>结果</h3><div class="alert alert-warning"><i class="fa fa-bell"></i>  Best check yo self, you're not looking too good.</div><div class="alert alert-danger"><i class="fa fa-bug"></i>  Change a few things up and try submitting again.</div><div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>  You successfully read this important alert message.</div><div class="alert alert-info"><i class="fa fa-info"></i>  This alert needs your attention, but it's not super important.</div>]]></content>
-      
+      <tags>
+        <tag>ZeyFraのbug宝典</tag>
+        <tag>idea</tag>
+        <tag>乱码</tag>
+        <tag>javaweb</tag>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【数据库01】数据的独立性</title>
+    <url>/2020/03/05/%E3%80%90%E6%95%B0%E6%8D%AE%E5%BA%9301%E3%80%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%8B%AC%E7%AB%8B%E6%80%A7/</url>
+    <content><![CDATA[<p><strong>数据的独立性是数据库系统的最基本的特征之一</strong> 。数据独立性是指应用程序和数据结构之间相互独立, 互不影响。在三层模式体系结构中数据独立性是指数据库系统在某一层次模式上的改变不会使它的上一层模式也发生改变的能力。正是三级模式间的两层映像保证了数据库系统中的数据具有较高的数据独立性。 数据独立性包括数据<strong>逻辑独立性</strong>和数据<strong>物理独立性</strong>。</p>
+<h2 id="逻辑独立性">逻辑独立性</h2>
+<p><strong>用户的应用程序与数据库的逻辑结构是相互独立的</strong>。即，当数据的逻辑结构改变时，用户程序也可以不变。 有了外模式/模式映像，模式改变时，如增加新的属性、修改属性的类型，只要对外模式/模式的映像做相应的改变，可使外模式保持不变，则以外模式为依据编写的应用程序就不受影响，从而应用程序不必修改，保证了数据与程序之间的逻辑独立性，也就是逻辑数据独立性。</p>
+<h2 id="物理独立性">物理独立性</h2>
+<p><strong>用户的应用程序与存储在磁盘上的数据库中数据是相互独立的</strong>。即，数据在磁盘上怎样存储由DBMS管理，用户程序不需要了解，应用程序要处理的只是数据的逻辑结构，这样当数据的物理存储改变了，应用程序不用改变。 有了模式/内模式映像，当内模式改变时，如存储设备或存储方式有所改变，只要对模式/内模式映像做相应的改变，使模式保持不变，则应用程序就不受影响，从而保证了数据与程序之间的物理独立性，称为存储数据独立性</p>
+]]></content>
       <categories>
-          
-          <category> Docs </category>
-          
+        <category>数据库</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> plugins </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Code Highlight</title>
-      <link href="/hexo-theme-freemind-blog/2014/03/15/code-highlight/"/>
-      <url>/hexo-theme-freemind-blog/2014/03/15/code-highlight/</url>
-      <content type="html"><![CDATA[<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World\n"</span>);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="C-1"><a href="#C-1" class="headerlink" title="C++"></a>C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// C++</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Hello World"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure><a id="more"></a><h2 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">helloWorld</span></span></div><div class="line">&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span></div><div class="line">    &#123;</div><div class="line">        System.out.println(<span class="string">"Hello World"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="Assembler"><a href="#Assembler" class="headerlink" title="Assembler"></a>Assembler</h2><figure class="highlight arm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">#include</span> &lt;stdio.h&gt;</div><div class="line"></div><div class="line"><span class="symbol">char</span> format[] = <span class="string">"%s %s\n"</span><span class="comment">;</span></div><div class="line"><span class="symbol">char</span> hello[] = <span class="string">"Hello"</span><span class="comment">;</span></div><div class="line"><span class="symbol">char</span> world[] = <span class="string">"world"</span><span class="comment">;</span></div><div class="line"><span class="symbol">void</span> main( void )</div><div class="line">&#123;</div><div class="line">   __asm</div><div class="line">   &#123;</div><div class="line">      <span class="keyword">mov </span> eax, offset world</div><div class="line">      <span class="keyword">push </span>eax</div><div class="line">      <span class="keyword">mov </span> eax, offset hello</div><div class="line">      <span class="keyword">push </span>eax</div><div class="line">      <span class="keyword">mov </span> eax, offset format</div><div class="line">      <span class="keyword">push </span>eax</div><div class="line">      call printf</div><div class="line">      <span class="keyword">pop </span> ebx</div><div class="line">      <span class="keyword">pop </span> ebx</div><div class="line">      <span class="keyword">pop </span> ebx</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="Net"><a href="#Net" class="headerlink" title=".Net"></a>.Net</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">// Hello World .NET</div><div class="line"></div><div class="line">#using &lt;mscorlib.dll&gt;</div><div class="line">using namespace System;</div><div class="line"></div><div class="line">int _tmain()</div><div class="line">&#123;</div><div class="line">    Console::WriteLine(S"Hello World");</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h2 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h2><figure class="highlight erlang"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">-module</span><span class="params">(hello)</span>.</div><div class="line"><span class="keyword">-export</span><span class="params">([world/<span class="number">0</span>])</span>.</div><div class="line"></div><div class="line"><span class="function"><span class="title">world</span><span class="params">()</span> -&gt;</span> io:format(<span class="string">"Hello World"</span>).</div></pre></td></tr></table></figure><h2 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/local/bin/ruby -w</span></div><div class="line">puts <span class="string">"Hello World"</span></div></pre></td></tr></table></figure><h2 id="BASIC"><a href="#BASIC" class="headerlink" title="BASIC"></a>BASIC</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// Texas Instruments TI-81 BASIC</div><div class="line">Prgm1:HELLO...</div><div class="line">:Disp "HELLO WORLD"</div></pre></td></tr></table></figure><h2 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin perl -w  </span></div><div class="line"><span class="keyword">print</span> (<span class="string">"Hello World"</span>);</div></pre></td></tr></table></figure><h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/bin/python</span></div><div class="line">print(<span class="string">"Hello World"</span>)</div></pre></td></tr></table></figure><h2 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure><h2 id="Brainfuck"><a href="#Brainfuck" class="headerlink" title="Brainfuck"></a>Brainfuck</h2><figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="string">.</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="literal">+</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span></div><div class="line">&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span> &lt;<span class="string">.</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span><span class="title">]</span>&lt;<span class="literal">-</span><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span></div><div class="line"><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span>&gt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="title">[</span>&lt;<span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span>&gt;<span class="literal">-</span> <span class="title">]</span>&lt;<span class="literal">+</span><span class="string">.</span><span class="title">[</span><span class="literal">-</span><span class="title">]</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="literal">+</span><span class="string">.</span></div></pre></td></tr></table></figure><h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?</span>=<span class="string">"Hello world\n"</span> <span class="meta">?&gt;</span></div></pre></td></tr></table></figure><h2 id="Pascal"><a href="#Pascal" class="headerlink" title="Pascal"></a>Pascal</h2><figure class="highlight pascal"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Program</span> HelloWorld;</div><div class="line"></div><div class="line"><span class="keyword">Begin</span></div><div class="line">  Writeln (<span class="string">'Hello World!'</span>);</div><div class="line"><span class="keyword">End</span>.</div></pre></td></tr></table></figure><h2 id="Delphi"><a href="#Delphi" class="headerlink" title="Delphi"></a>Delphi</h2><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Delphi, thanks to C0derr</span></div><div class="line"><span class="keyword">program</span> Project1;</div><div class="line"><span class="keyword">uses</span></div><div class="line">  qdialogs;</div><div class="line"><span class="keyword">const</span></div><div class="line">  s=<span class="string">'Hello, World!'</span>;</div><div class="line"><span class="keyword">begin</span></div><div class="line">  showmessage(s);</div><div class="line"><span class="keyword">end</span>.</div></pre></td></tr></table></figure>]]></content>
-      
+      <tags>
+        <tag>数据库</tag>
+        <tag>java</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【bug宝典04-Idea&amp;Lombok】关于Lombok Requires Annotation Processing的解决</title>
+    <url>/2020/09/23/%E3%80%90bug%E5%AE%9D%E5%85%B804-Idea&amp;Lombok%E3%80%91%E5%85%B3%E4%BA%8ELombok%20Requires%20Annotation%20Processing%E7%9A%84%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<h2 id="问题描述">【问题描述】</h2>
+<p>安装完或者添加lombok依赖后，启动项目时右下角弹出了这个错误 <img src="https://s2.loli.net/2022/04/03/o4tT9AOjzYskr3E.png" alt=""></p>
+<h2 id="解决方案">【解决方案】</h2>
+<p>小问题，别担心，以下是英语超辣鸡的翻译：</p>
+<ul>
+<li>Lombok插件需要注解编程支持</li>
+<li>使用注解变似乎被禁止了，对于项目‘xpg’不起作用。但是Lombok所需的jar包等资源已在根目录下。点击下面的连接使该项目能够进行注解编程<img src="https://s2.loli.net/2022/04/03/HmvUkyZxr1dIng7.jpg" alt=""></li>
+</ul>
+<h3 id="所以很简单了吧-最笨的办法就是点击这个超链接啦-或者在这里进行配置">所以很简单了吧，最笨的办法就是点击这个超链接啦~或者在这里进行配置</h3>
+<p><img src="https://s2.loli.net/2022/04/03/NmtLIU4wMPz6eRf.png" alt=""></p>
+]]></content>
+      <tags>
+        <tag>java</tag>
+        <tag>spring</tag>
+        <tag>spring boot</tag>
+        <tag>idea</tag>
+        <tag>ZeyFraの宝典</tag>
+        <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记01】</title>
+    <url>/2020/07/15/%E3%80%90%E9%9A%8F%E8%AE%B001%E3%80%91/</url>
+    <content><![CDATA[<ul>
+<li>今天搞了一天，Spring Boot整合Mybatis框架。很累，最近也没时间写博客，20号要写出个小程序。</li>
+<li>明天考科目一，冲冲冲！</li>
+<li>不知道什么时候起，越发的觉得自己什么也不会，知道的太少，懊悔自己没早点知晓自己渺小，但也不得不承认安逸的日子确实让人舒服。</li>
+<li>暑假回来带了好多书，这个暑假一定要把它们看完。</li>
+<li>现在是越来越觉得时间不够了，有时总会手忙脚乱的。</li>
+<li>有时候我是真的不明白那些人，也不知道他们在想什么。</li>
+<li>放弃了老段的那个算法竞赛团队，也不知道这个选择是对还是错，也许是我懦弱吧，一点也不想跟那样的生活有半点关系。</li>
+<li>上了大学后我越来越不愿意去回忆任何事情，不管是什么，我都不想回忆。或许这也是我经常记不住东西的原因吧。</li>
+<li>好消息是打游戏的欲望没有好多，其实还有，但是一想到自己多么的弱小，也就索然无味了。谁还没有一科想成为主角的心呢。</li>
+<li>想变得厉害一点</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> Demo </category>
-          
+        <category>个人随记</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> highlight </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Lorem Ipsum</title>
-      <link href="/hexo-theme-freemind-blog/2014/03/15/lorem-ipsum/"/>
-      <url>/hexo-theme-freemind-blog/2014/03/15/lorem-ipsum/</url>
-      <content type="html"><![CDATA[<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p><img src="/hexo-theme-freemind-blog/images/lorem-ipsum/lorem-ipsum.jpg" alt="Lorem Ipsum"></p><a id="more"></a><p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>]]></content>
-      
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记04】22计科（11408）考研一战白给小丑自我总结</title>
+    <url>/2022/03/29/%E3%80%90%E9%9A%8F%E8%AE%B004%E3%80%9122%E8%AE%A1%E7%A7%91%EF%BC%8811408%EF%BC%89%E8%80%83%E7%A0%94%E4%B8%80%E6%88%98%E7%99%BD%E7%BB%99%E5%B0%8F%E4%B8%91%E8%87%AA%E6%88%91%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="在哪？">【在哪？】</h2>
+<p>  在寝室，有俩室友还在呼呼大睡呢，有个早上爬起来上网课，南昌快解封了好</p>
+<h2 id="天气？">【天气？】</h2>
+<p>  天气挺好的，出太阳，希望到下午也是这个样子</p>
+<h2 id="心情？">【心情？】</h2>
+<p>  今天心情挺好的，开心！</p>
+<h2 id="说吧">【说吧。】</h2>
+<blockquote>
+<p>  主要是对自己白给的一战一个总结吧，挺不甘心的。翻看了下自己的博客，才发现去年自己这个时间段好像还没开始复习，总觉得时间够（当然也是被老师忽悠了= =千万不能完全相信老师） 3-5月貌似都在浑浑噩噩的上着课在玩，班上有的同学已经开始泡图书馆了，我也不晓得我在干嘛。后来就是被班主任拉去搞一个破项目，是去参加计算机设计大赛，折腾到7月，也是白给了，没拿到国奖，然后才正儿八经的开始复习，也不知道自己当初为什么这么头铁，这个时间段开始复习还敢向11408发起冲锋，也许是想要向别人捍卫自己的科班尊严（因为听说很多跨考408的是高分大佬）后来事实证明我就是个白痴…   下面自爆下咯，报考的是深大计科学硕（主要都考成这样我也不怕丢人了，算是给自己的警示吧），288分（政治69 数一70 英一70 408 79），排名是288名…</p>
+</blockquote>
+<h3 id="英语：">英语：</h3>
+<p><img src="https://s2.loli.net/2022/04/03/CKBUw365fEv1ipZ.gif" alt="">  不知道为啥只有70分= =完型错了3阅读错4，明明翻译也看出来了是讲情报密码学拿破仑之类的，可能是自己字丑？我也尽量工整了，单词自己开始背的太慢了，我只记得背过最离谱的是一天复习+新单词有800个= =基本要花一个半或者两个小时背单词，觉得自己背单词还是不够扎实吧，还有就是翻译，确实没认真对待过，字，我的字啊，害= =，阅读还是错太多了…</p>
+<h3 id="数学：">数学：</h3>
+<p><img src="https://s2.loli.net/2022/04/03/oUK3svBrXZLASi7.jpg" alt=""><br>
+  数学自己问题太大了，确实掉入了陷阱，觉得听课刷视频看得多就以为自己会了，前期自己也没有很明确的知识结构，飘<br>
+太高了，基础不扎实，真题都没做完，还有就是张宇害人= =好吧，你要觉得我是没考上喷人家也行，千万别用1000题，880+660好多了，但是张宇的线代强化教材确实挺不错</p>
+<h3 id="408">408:</h3>
+<p><img src="https://s2.loli.net/2022/04/03/gbo8QaRLsWzEOcu.jpg" alt="">  太难了408，我觉得我没梳理好每门的知识结构，也没有说自己去在脑中会回忆和复习，只想着说看得懂就行了，结果题也没做多少，只做了些选择题，真题也只做了2-3套，好吧我很想怪时间不够，其实还是自己菜…又爱又恨…</p>
+<h3 id="政治：">政治：</h3>
+<p><img src="https://s2.loli.net/2022/04/03/G9NQfbLRhBSykmw.jpg" alt="">	<br>
+  其实还是挺离谱的，1000题只做了马原，肖八肖四没做过，我做肖八肖四的选择都是直接看答案= =相当于背答案了都，大<br>
+题的话肖四第一套都没背出来…答题的时候都是自己在编（回想早上在天台背第一套的时候，哈哈哈)</p>
+<h3 id="感慨：">感慨：</h3>
+<p><img src="https://s2.loli.net/2022/04/03/PmNoKOef8V4CEkG.gif" alt=""><br>
+  在我的好朋友当中我变成最废的了= =A学计算机，已保研到南京某211，目前在他帝国理工博士表哥的准备上市公司里远程<br>
+上班，他对象今年也考了南京某高校新传（414分）；B考公，家里提前给他在广东某市买好了房子了，他也不负众望，该市省考干到第2，等待面试了；C考福建某市的高校法硕去了，已在复试名单（招46复试46人稳了)，好巧不巧他前女友也考了该市公务员，据说面试情况还不错；D在江苏某211机电，本打算考研，发现太难打算躺平了，找了个央企，技术管理混合岗，1.5k，6险一金，拎包入住，海景房单人间…</p>
+<p><img src="https://s2.loli.net/2022/04/03/xkL2vYuRUqAifrp.jpg" alt=""></p>
+<p>  我的班级是学校和东软有合作，大四过去他们的基地实训，那边基本没人管，毕设也很水，班主任（也是前面那个项目的指导老师）逼着我报了个国创，说是为了增加经费…作为补偿问我要不要转班换方向就可以不用去东软留在学校，这样暑假就可以待在学校啦，也不用这么麻烦（老师人挺好的，也给了我资源，给了个很大的实验室，基本没人，有空调wifi），本来是打算坚持去东软的，没人管还有伴，后面也不知道怎么，如果可以坚持自我就好了…后来就这样了，转了班（对我确实挺好了，大四还能换方向= =）</p>
+<p>  后来就这样慢慢开始复习了，暑假就在实验室里待在，确实舒服，自由自在（手机还摔坏了屏幕，现在漏液了，呜呜呜，不知还能挺多久），后来9月底的时候突然说来了一批acm学弟要打比赛（班主任也是acm 的导师），然后我再也没去过实验室，那人手一个键盘顶不住…图书馆，书太多，不想背，也去过几天，受不了，后来就开始了寝室学习…好险大一就有了在寝室学习的习惯，就这样日复一日起床坐在那，确实，考研太容易自我感动，我就是个白痴，不过那时候压力也确实大…不知道自己能不能学完，能学的好吗，我开始的这么晚，那个时候白天睡不了，一躺下就能听到心跳的咚咚跳动，晚上也是睡不着，焦虑，失眠，心慌，害，后面是靠蜜汁自信带来的乐观撑过来的，也没太多娱乐，反正回想起确实是一段终身难忘的经历，同时也是一段懊悔的经历，考试的那几天，反而没了不安焦虑，变得十分平淡，考试过程中政治、408、数学都提前跑了（我把我能做的、做了的检查、做不出的看了又看才跑的），考完之后也是解放了，心慌焦虑啥的也慢慢好多了，不管三七二十一就开摆了… <img src="https://s2.loli.net/2022/04/03/2YD1fyqV6FwZxGg.gif" alt=""></p>
+<p>  如果不听老师的不跟他搞项目就好了…；如果自己能早点成熟静下心就好了… 如果坚持到底不转班去，跟着班上的同学一起去东软就好了…可惜没如果</p>
+<h2 id="展望？">【展望？】</h2>
+<p>  出分的时候觉得，288分没法读了，排名这么后，做好了二战心里准备，结果出国家线那天人麻了，开始折腾调剂想跑路，折腾了2星期，发现自己分数太辣鸡，偏远的地方的学校也不想去，稍微好那么一点点的我也去不了，没300分就是个弟弟，放弃了，结果辅导员又说信工有学硕名额，结果人家计科没300不收，要去只能去控制，问了下研二学姐控制搞电气的，不想读，搞到现在，老老实实二战吧，不太想工作，家里人也让我去再考一次，而且打算今年秋招要找到工作，明天要检查毕设了，希望早点弄完早点结束吧，还是挺有信心的，我一战虽然是小丑，但是我真的有努力了，没有浑浑噩噩的度过，也晓得自己不足踩得坑在哪，就这样吧，随记会慢慢更新，想记录自己心情，难受，加油吧！</p>
+]]></content>
       <categories>
-          
-          <category> Test </category>
-          
+        <category>个人随记</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> English </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>繁體中文測試</title>
-      <link href="/hexo-theme-freemind-blog/2013/12/25/traditional-chinese-test/"/>
-      <url>/hexo-theme-freemind-blog/2013/12/25/traditional-chinese-test/</url>
-      <content type="html"><![CDATA[<p>觀自在菩薩，行深般若波羅蜜多時，照見五蘊皆空，度一切苦厄。</p><p>舍利子，色不異空，空不異色；色即是空，空即是色。受、想、行、識，亦復如是。</p><p>舍利子，是諸法空相，不生不滅，不垢不淨，不增不減，是故空中無色，無受、想、行、識；無眼、耳、鼻、舌、身、意；無色、聲、香、味、觸、法；無眼界，乃至無意識界；無無明，亦無無明盡；乃至無老死，亦無老死盡。無苦、集、滅、道，無智亦無得，以無所得故。</p><p>菩提薩埵(<code>duǒ</code>)，依般若波羅蜜多故，心無罣礙(<code>guà ài</code>)。無罣礙，故無有恐怖，遠離顛倒夢想，究竟涅槃。三世諸佛，依般若波羅蜜多故，得阿耨多羅三藐三菩提。</p><p>故知般若波羅蜜多，是大神咒，是大明咒，是無上咒，是無等等咒，能除一切苦，真實不虛。</p><p>故說般若波羅蜜多咒，即說咒曰：</p><blockquote><p>揭諦、揭諦，波羅揭諦，波羅僧揭諦，菩提薩婆訶。</p></blockquote>]]></content>
-      
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
+        <tag>计算机考研</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记02】</title>
+    <url>/2020/09/23/%E3%80%90%E9%9A%8F%E8%AE%B002%E3%80%91/</url>
+    <content><![CDATA[<ul>
+<li>
+<p>很久没有更博客了，最近也不知道干嘛。前段时间断断续续的跟着小破站的视频写着前端，写的很自闭</p>
+</li>
+<li>
+<p>前几天和老段聊了下，被他点醒了下。他说我这样学再多的框架，没什么用，框架是很快过时的，如果他们老师只讲这些那么我们和培训机构出来的又有什么区别呢？想想也是，我却以为学了点会用了些框架好像就懂了很多一样，其实我们都是使用者。老段说实在的建议是考个研吧，本科生的确不好竞争，比较我不是那种拔尖突出的人。</p>
+</li>
+<li>
+<p>六级白给了，12月还有一次机会。</p>
+</li>
+<li>
+<p>总觉得每天的时间不够，却又好像没有做些什么。</p>
+</li>
+<li>
+<p>三小自己好像有点笨比，害，前后端分离，到底什么是前后端分离，只是简简单单的VUE + SpringBoot吗？我也不知道， 好像自己从不去深入了解，知道个大概就有点沾沾自喜了。我好垃圾= =</p>
+</li>
+<li>
+<p>要学的真多= =</p>
+</li>
+<li>
+<p>我好菜，有点手忙脚乱不知所措= =</p>
+</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> Test </category>
-          
+        <category>个人随记</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 繁體 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>简体中文测试</title>
-      <link href="/hexo-theme-freemind-blog/2013/12/25/simplified-chinese-test/"/>
-      <url>/hexo-theme-freemind-blog/2013/12/25/simplified-chinese-test/</url>
-      <content type="html"><![CDATA[<p>观自在菩萨，行深般若波罗蜜多时，照见五蕴皆空，度一切苦厄。</p><p>舍利子，色不异空，空不异色；色即是空，空即是色。受、想、行、识，亦复如是。</p><p>舍利子，是诸法空相，不生不灭，不垢不净，不增不减，是故空中无色，无受、想、行、识；无眼、耳、鼻、舌、身、意；无色、声、香、味、触、法；无眼界，乃至无意识界；无无明，亦无无明尽；乃至无老死，亦无老死尽。无苦、集、灭、道，无智亦无得，以无所得故。</p><p>菩提萨埵(<code>duǒ</code>)，依般若波罗蜜多故，心无罣碍(<code>guà ài</code>)。无罣碍，故无有恐怖，远离颠倒梦想，究竟涅盘。三世诸佛，依般若波罗蜜多故，得阿耨多罗三藐三菩提。</p><p>故知般若波罗蜜多，大神咒，是大明咒，是无上咒，是无等等咒，能除一切苦，真实不虚。</p><p>故说般若波罗蜜多咒， 即说咒曰，</p><blockquote><p>揭谛揭谛 波罗揭谛 波罗僧揭谛 菩提萨婆诃</p></blockquote>]]></content>
-      
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记02】</title>
+    <url>/2020/09/26/%E3%80%90%E9%9A%8F%E8%AE%B003%E3%80%91/</url>
+    <content><![CDATA[<ul>
+<li>再一次觉得自己好菜，啥也不会= =会的那些也称不上会，只是看了下教程写了个高级“lHelloWord”而已= = 从基础抓起吧</li>
+<li>今天想把三小的基本后端搭起来的= =没完成，折腾了一上午的EasyExcel和Poi也没整明白，后来又发现自己的某个思考方向是错的= =</li>
+<li>下午写最基本的东西都忘了，感觉自己记忆力好差，很难受，做不到一下就理解并记住难受QAQ</li>
+<li>LGD好菜= =</li>
+<li>加油吧，骚年</li>
+<li>把基础打牢</li>
+<li>有人用我的博客成功解决了他全网搜遍都解决不了的问题，开心~</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> Test </category>
-          
+        <category>个人随记</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 简体 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-  
-  
-    
-    <entry>
-      <title></title>
-      <link href="/hexo-theme-freemind-blog/404.html"/>
-      <url>/hexo-theme-freemind-blog/404.html</url>
-      <content type="html"><![CDATA[<!DOCTYPE HTML><html>  <head><meta charset="utf-8"><title>404 | hexo-theme-freemind</title><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta property="og:site_name" content="hexo-theme-freemind"><meta property="og:image" content="undefined"><link href="favicon.png" rel="icon"><link rel="stylesheet" href="/hexo-theme-freemind/css/themes/bootstrap.css" media="screen" type="text/css">  <link rel="stylesheet" href="/hexo-theme-freemind/css/style.css" media="screen" type="text/css">  <script src="/hexo-theme-freemind/js/jquery-2.0.3.min.js"></script>  </head>  <body><nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">  <div class="container"><button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">  <span class="sr-only">Toggle navigation</span>          <span class="icon-bar"></span>          <span class="icon-bar"></span>          <span class="icon-bar"></span></button><a class="navbar-brand" href="/hexo-theme-freemind/">Freemind</a><div class="collapse navbar-collapse nav-menu">  <ul class="nav navbar-nav"><li>  <a href="/hexo-theme-freemind/archives" title="All the articles."><i class="fa fa-archive"></i>Archives  </a></li><li>  <a href="/hexo-theme-freemind/categories" title="All the categories."><i class="fa fa-folder"></i>Categories  </a></li><li>  <a href="/hexo-theme-freemind/tags" title="All the tags."><i class="fa fa-tags"></i>Tags  </a></li><li>  <a href="/hexo-theme-freemind/about" title="About me."><i class="fa fa-user"></i>About  </a></li>  </ul></div>  </div></nav><div class="clearfix"></div>    <div class="container">    <div class="content">    <div class="page-header">  <h1>OMG, failed to find this article! </h1></div><div class="row-fluid page">  <div style="text-align: center"><div class="spell-img">  <img src="/hexo-theme-freemind/images/404.png"></div><input type="text" id="local-search-input" name="q" results="0" placeholder="Don't worry, search articles here!" class="st-search-input st-default-search-input form-control" style="margin-bottom:1em">  </div>  <div id="local-search-result"></div></div>  </div>    </div> <!-- container --><div class="container-narrow">  <footer> <p>  &copy; 2014 Joseph Pan    with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="external">Freemind</a>.    </p> </footer></div> <!-- container-narrow --><script src="/hexo-theme-freemind/js/bootstrap.min.js"></script><script src="/hexo-theme-freemind/js/search.js"></script> <script type="text/javascript">           var path = "/hexo-theme-freemind/search.xml";     searchFunc(path, 'local-search-input', 'local-search-result');   </script>  </body></html>]]></content>
-    </entry>
-    
-    <entry>
-      <title>About</title>
-      <link href="/hexo-theme-freemind-blog/about/index.html"/>
-      <url>/hexo-theme-freemind-blog/about/index.html</url>
-      <content type="html"><![CDATA[Something about me. ;-)]]></content>
-    </entry>
-    
-    <entry>
-      <title>Categories</title>
-      <link href="/hexo-theme-freemind-blog/categories/index.html"/>
-      <url>/hexo-theme-freemind-blog/categories/index.html</url>
-      <content type="html"><![CDATA[]]></content>
-    </entry>
-    
-    <entry>
-      <title>Tags</title>
-      <link href="/hexo-theme-freemind-blog/tags/index.html"/>
-      <url>/hexo-theme-freemind-blog/tags/index.html</url>
-      <content type="html"><![CDATA[]]></content>
-    </entry>
-    
-  
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【随记05】23考研，重新出发，决不投降，真正的为自己脚踏实地认真努力拼一次吧</title>
+    <url>/2022/03/31/%E3%80%90%E9%9A%8F%E8%AE%B005%E3%80%9123%E8%80%83%E7%A0%94%EF%BC%8C%E9%87%8D%E6%96%B0%E5%87%BA%E5%8F%91%EF%BC%8C%E5%86%B3%E4%B8%8D%E6%8A%95%E9%99%8D%EF%BC%8C%E7%9C%9F%E6%AD%A3%E7%9A%84%E4%B8%BA%E8%87%AA%E5%B7%B1%E8%84%9A%E8%B8%8F%E5%AE%9E%E5%9C%B0%E8%AE%A4%E7%9C%9F%E5%8A%AA%E5%8A%9B%E6%8B%BC%E4%B8%80%E6%AC%A1%E5%90%A7/</url>
+    <content><![CDATA[<hr>
+<h2 id="在哪？">【在哪？】</h2>
+<p>老样子在寝室哦</p>
+<h2 id="天气？">【天气？】</h2>
+<p>今天南昌下大雨，又刮大风，害蛮冷的，我都短袖+棉衣</p>
+<h2 id="心情？">【心情？】</h2>
+<p>还好吧，一般般，在折腾毕设，昨天倒是挺开心的，自闭毕设bug= =真的就是一包茶一包烟，一个bug改一天（调命令行跑沙箱跑步起来原因是路径文件夹带空格需前后加双引号） <img src="https://s2.loli.net/2022/04/03/8PaywICmX9d5EAe.jpg" alt=""></p>
+<h2 id="说吧">【说吧。】</h2>
+<p><img src="https://s2.loli.net/2022/04/03/2vOoUIZe19xViKY.gif" alt=""></p>
+<p>  也没啥，今天3月的最后一天，明天就4月了，打算准备开始二战了，说干就干，没想着要感动自己，只是不想后悔没去做</p>
+<p>  讲个笑话，英一考了70而六级还没过，当前英语大目标重点就是六级了，必须好好搞搞，最后一次机会了，之前自己确实也没有认真准备，觉得突击做两篇阅读得意洋洋还觉得能过，记不清已经多少次，一定好好把握住这最后一次机会</p>
+<p>  = =还有减肥，太难，昨天害挺好的，今天白给，吃多了，加上一直下雨，没咋运动都…</p>
+<p><img src="https://s2.loli.net/2022/04/03/tASpgEiUkOc7Cyj.jpg" alt=""></p>
+<p> （1）目前当然还是毕设为主，早弄早结束得了，不过备考学习也得相应展开了，今天整的前端= =丑是丑了点，还勉强过得去，希望早点完成吧。</p>
+<p> （2）数学自己踩的坑自己也清楚，首先是三大计算，打算老老实实做题为主，少看视频，880+660好了，早日有自己的知识体系和坚实的基础</p>
+<p> （3）英语就单词+练字啦，看看能不能坚持听听英语听力</p>
+<p> （4）408的话就先抓数据结构和操作系统吧，希望早日做到熟稔于心入神境界</p>
+]]></content>
+      <categories>
+        <category>个人随记</category>
+      </categories>
+      <tags>
+        <tag>ZeyFraの随记</tag>
+        <tag>学习</tag>
+        <tag>加油</tag>
+        <tag>计算机考研</tag>
+      </tags>
+  </entry>
 </search>
